@@ -1,0 +1,79 @@
+.button {
+  all: unset;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: middle;
+  border-radius: 6px;
+  font-size: 1rem;
+  line-height: 0;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.small {
+  height: 36px;
+  padding: 0 12px;
+}
+
+.medium {
+  height: 42px;
+  padding: 0 14px;
+}
+
+.large {
+  height: 48px;
+  padding: 0 16px;
+}
+
+.text {
+  background: none;
+  color: #3f51b5;
+}
+
+.filled {
+  background: #3f51b5;
+  color: white;
+}
+
+.outlined {
+  border: solid 1px #c5cae9;
+  color: #3f51b5;
+}
+
+.container {
+  z-index: 1;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  position: relative;
+  grid-auto-flow: column;
+  place-items: center;
+  grid-gap: 8px;
+}
+
+.button:hover > .overlay {
+  opacity: 0.05;
+}
+
+.button:active > .overlay {
+  opacity: 0.1;
+}
+
+.filled:hover > .overlay {
+  opacity: 0.2;
+}
+
+.filled:active > .overlay {
+  opacity: 0.4;
+}
+
+.overlay {
+  content: "";
+  z-index: 0;
+  position: absolute;
+  inset: 0;
+  background: #1a237e;
+  opacity: 0;
+}
