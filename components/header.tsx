@@ -1,4 +1,4 @@
-import Button from "./button";
+import Button from "./Button";
 import styles from "../styles/Header.module.css";
 
 interface HeaderProps {
