@@ -10,20 +10,15 @@ const sizes = ["small", "medium", "large"];
 const variants = ["text", "filled", "outlined"];
 
 export const AllButtons = () => (
-  <div
-    style={{
-      display: "grid",
-      placeItems: "flex-start",
-      gap: "8px",
-    }}
-  >
+  <div style={{ display: "grid", gap: "8px", placeItems: "flex-start" }}>
     {variants.map((variant) =>
       sizes.map((size) =>
         components.map((component) => (
           <div
             style={{
-              display: "flex",
+              display: "grid",
               gap: "8px",
+              placeItems: "flex-start",
             }}
           >
             <Button component={component} size={size} variant={variant}>

@@ -6,7 +6,7 @@
   border-radius: 6px;
   font-size: 1rem;
   line-height: 0;
-  font-weight: 500;
+  font-variation-settings: "wght" 550;
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -29,17 +29,17 @@
 
 .text {
   background: none;
-  color: #3f51b5;
+  color: #00bcd4;
 }
 
 .filled {
-  background: #3f51b5;
+  background: #00bcd4;
   color: white;
 }
 
 .outlined {
-  border: solid 1px #c5cae9;
-  color: #3f51b5;
+  border: solid 2px #00bcd4;
+  color: #00bcd4;
 }
 
 .container {
@@ -54,19 +54,11 @@
 }
 
 .button:hover > .overlay {
-  opacity: 0.05;
-}
-
-.button:active > .overlay {
   opacity: 0.1;
 }
 
-.filled:hover > .overlay {
-  opacity: 0.2;
-}
-
-.filled:active > .overlay {
-  opacity: 0.4;
+.button:active > .overlay {
+  opacity: 0.15;
 }
 
 .overlay {
@@ -74,6 +66,10 @@
   z-index: 0;
   position: absolute;
   inset: 0;
-  background: #1a237e;
+  background: #00bcd4;
   opacity: 0;
+}
+
+.filled .overlay {
+  background: black;
 }
