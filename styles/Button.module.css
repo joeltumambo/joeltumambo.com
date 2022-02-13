@@ -6,7 +6,7 @@
   border-radius: 6px;
   font-size: 1rem;
   line-height: 0;
-  font-variation-settings: "wght" 550;
+  font-weight: 500;
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -27,19 +27,16 @@
   padding: 0 16px;
 }
 
-.text {
+.button:not(.filled) {
   background: none;
-  color: #00bcd4;
+  color: #5c6bc0;
 }
 
 .filled {
-  background: #00bcd4;
+  background: #5c6bc0;
+  border: solid 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1);
   color: white;
-}
-
-.outlined {
-  border: solid 2px #00bcd4;
-  color: #00bcd4;
 }
 
 .container {
@@ -51,14 +48,7 @@
   grid-auto-flow: column;
   place-items: center;
   grid-gap: 8px;
-}
-
-.button:hover > .overlay {
-  opacity: 0.1;
-}
-
-.button:active > .overlay {
-  opacity: 0.15;
+  white-space: nowrap;
 }
 
 .overlay {
@@ -66,10 +56,27 @@
   z-index: 0;
   position: absolute;
   inset: 0;
-  background: #00bcd4;
+  background: #5c6bc0;
   opacity: 0;
 }
 
+.button:not(.filled):hover > .overlay {
+  opacity: 0.1;
+}
+
+.button:not(.filled):active > .overlay {
+  opacity: 0.2;
+}
+
+.filled:hover > .overlay {
+  background: none;
+}
+
+.filled:active > .overlay {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), transparent);
+}
+
 .filled .overlay {
-  background: black;
+  opacity: 1;
+  background: linear-gradient(rgba(255, 255, 255, 0.2), transparent);
 }

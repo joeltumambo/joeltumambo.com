@@ -4,7 +4,7 @@ import styles from "../styles/Button.module.css";
 
 interface ButtonProps {
   component?: "button" | "a";
-  variant?: "filled" | "outlined" | "text";
+  filled?: boolean;
   size?: "small" | "medium" | "large";
   brightness?: "dark" | "light";
   iconLeading?: string;
@@ -13,7 +13,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({
   component = "button",
-  variant = "text",
+  filled = false,
   size = "medium",
   brightness = "light",
   iconLeading,
@@ -23,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   const buttonClass = classnames(
     styles.button,
     styles[brightness],
-    styles[variant],
+    filled && styles.filled,
     styles[size]
   );
   const wrappedChildren = (

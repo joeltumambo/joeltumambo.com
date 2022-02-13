@@ -7,38 +7,38 @@ export default {
 
 const components = ["a", "button"];
 const sizes = ["small", "medium", "large"];
-const variants = ["text", "filled", "outlined"];
+const filled = [false, true];
 
 export const AllButtons = () => (
   <div style={{ display: "grid", gap: "8px", placeItems: "flex-start" }}>
-    {variants.map((variant) =>
-      sizes.map((size) =>
-        components.map((component) => (
+    {sizes.map((size) =>
+      components.map((component) =>
+        filled.map((filled) => (
           <div
             style={{
-              display: "grid",
+              display: "flex",
               gap: "8px",
               placeItems: "flex-start",
             }}
           >
-            <Button component={component} size={size} variant={variant}>
-              {size} {variant} {component}
+            <Button component={component} size={size} filled={filled}>
+              {filled && 'filled'} {size} {component} 
             </Button>
             <Button
               component={component}
               size={size}
-              variant={variant}
+              filled={filled}
               iconLeading="waving_hand"
             >
-              {size} {variant} {component}
+              {filled && 'filled'} {size} {component}
             </Button>
             <Button
               component={component}
               size={size}
-              variant={variant}
+              filled={filled}
               iconTrailing="waving_hand"
             >
-              {size} {variant} {component}
+              {filled && 'filled'} {size} {component}
             </Button>
           </div>
         ))
