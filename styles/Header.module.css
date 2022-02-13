@@ -13,8 +13,7 @@
 }
 
 .right {
-  display: grid;
-  grid-gap: 16px;
-  grid-auto-flow: column;
-
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }

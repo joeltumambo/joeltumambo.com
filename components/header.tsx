@@ -1,9 +1,7 @@
 import Button from "./Button";
 import styles from "../styles/Header.module.css";
 
-interface HeaderProps {
-  
-}
+interface HeaderProps {}
 
 const Header = () => (
   <div className={styles.section}>
@@ -20,12 +18,7 @@ const Header = () => (
         <Button size="small" component="a">
           Posts
         </Button>
-        <Button
-          size="small"
-          component="a"
-          iconLeading="waving_hand"
-          variant="filled"
-        >
+        <Button size="medium" component="a" iconLeading="waving_hand" filled>
           Say hello!
         </Button>
       </span>
