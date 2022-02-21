@@ -15,6 +15,8 @@ interface ButtonProps {
   iconTrailing?: string;
   disabled?: boolean;
   onClick?: () => void;
+  href?: string;
+  target?: string
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -26,6 +28,8 @@ const Button: React.FC<ButtonProps> = ({
   iconTrailing,
   disabled,
   onClick,
+  href,
+  target,
   children,
 }) => {
   const buttonClass = classnames(
@@ -51,10 +55,12 @@ const Button: React.FC<ButtonProps> = ({
   );
 
   return React.createElement(
-    component,
+    href ? "a" : component,
     {
       className: buttonClass,
       onClick: onClick,
+      href: href,
+      target: target
     },
     wrappedChildren
   );
