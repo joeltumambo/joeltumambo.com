@@ -1,5 +1,6 @@
-import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TextField from "../../components/TextField";
+import Button from "../../components/Button";
 
 export default {
   title: "Components/TextField",
@@ -84,6 +85,86 @@ export const AllTextFields = () => {
           helper="Error text"
           error
         />
+      </div>
+      <code
+        style={{
+          flex: 1,
+          marginLeft: "16px",
+          display: "block",
+          whiteSpace: "pre-wrap",
+        }}
+      >
+        {JSON.stringify({ values }, null, 2)}
+      </code>
+    </div>
+  );
+};
+
+export const ContactForm = () => {
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  useEffect(() => {
+    console.log(values);
+  }, [values]);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+      }}
+    >
+      <div
+        style={{
+          display: "grid",
+          gap: "24px",
+          flex: 1,
+        }}
+      >
+        <TextField
+          id="name"
+          value={values.name}
+          onChange={(e) => setValues({ ...values, name: e.target.value })}
+          label="Name"
+          placeholder="John"
+        />
+        <TextField
+          id="email"
+          value={values.email}
+          onChange={(e) => setValues({ ...values, email: e.target.value })}
+          label="Email"
+          placeholder="name@domain.com"
+          helper="I need this so I can say hello back."
+        />
+        <TextField
+          id="message"
+          value={values.message}
+          onChange={(e) => setValues({ ...values, message: e.target.value })}
+          label="Message"
+          placeholder="Say anything, really."
+          multiline
+        />
+        <div
+          style={{
+            display: "flex",
+            gap: "8px",
+            placeContent: "end",
+          }}
+        >
+          <Button
+            iconTrailing="north_east"
+            href={`mailto:joeltumambs@gmail.com?body=${encodeURI(values.message)}`}
+            target="_blank"
+          >
+            Use email app
+          </Button>
+          <Button filled iconTrailing="send">
+            Send
+          </Button>
+        </div>
       </div>
       <code
         style={{

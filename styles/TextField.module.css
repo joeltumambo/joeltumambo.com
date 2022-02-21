@@ -42,7 +42,8 @@
 }
 
 .container input::placeholder, 
-.container textarea::placeholder {
+.container textarea::placeholder,
+.container span:not(.error) {
   color: #bcaaa4;
 }
 
