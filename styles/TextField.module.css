@@ -41,7 +41,7 @@
   box-shadow: 0 0 0 2px #c5cae9;
 }
 
-.container input::placeholder,
+.container input::placeholder, 
 .container textarea::placeholder {
   color: #bcaaa4;
 }
