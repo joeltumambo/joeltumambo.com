@@ -39,11 +39,11 @@ const Button: React.FC<ButtonProps> = ({
     <>
       <div className={styles.container}>
         {iconLeading && (
-          <span className="material-icons md-18">{iconLeading}</span>
+          <span className="material-icons-round md-18">{iconLeading}</span>
         )}
         <span>{children}</span>
         {iconTrailing && (
-          <span className="material-icons md-18">{iconTrailing}</span>
+          <span className="material-icons-round md-18">{iconTrailing}</span>
         )}
       </div>
       <span className={styles.overlay}></span>
