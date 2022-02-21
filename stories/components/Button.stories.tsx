@@ -18,42 +18,50 @@ export const AllButtons = () => (
     {sizes.map((size) =>
       components.map((component) =>
         filled.map((filled) =>
-          disabled.map((disabled) => (
-            <div
-              style={{
-                display: "flex",
-                gap: "8px",
-                placeItems: "flex-start",
-              }}
-            >
-              <Button
-                component={component}
-                size={size}
-                filled={filled}
-                disabled={disabled}
+          disabled.map((disabled) => {
+            const buttonText = `${filled ? "filled" : ""} ${size} ${component}`;
+            const onClick = () => console.log(`${buttonText} clicked!`);
+
+            return (
+              <div
+                style={{
+                  display: "flex",
+                  gap: "8px",
+                  placeItems: "flex-start",
+                }}
               >
-                {filled && "filled"} {size} {component}
-              </Button>
-              <Button
-                component={component}
-                size={size}
-                filled={filled}
-                disabled={disabled}
-                iconLeading="waving_hand"
-              >
-                {filled && "filled"} {size} {component}
-              </Button>
-              <Button
-                component={component}
-                size={size}
-                filled={filled}
-                disabled={disabled}
-                iconTrailing="waving_hand"
-              >
-                {filled && "filled"} {size} {component}
-              </Button>
-            </div>
-          ))
+                <Button
+                  component={component}
+                  size={size}
+                  filled={filled}
+                  disabled={disabled}
+                  onClick={onClick}
+                >
+                  {buttonText}
+                </Button>
+                <Button
+                  component={component}
+                  size={size}
+                  filled={filled}
+                  disabled={disabled}
+                  iconLeading="waving_hand"
+                  onClick={onClick}
+                >
+                  {buttonText}
+                </Button>
+                <Button
+                  component={component}
+                  size={size}
+                  filled={filled}
+                  disabled={disabled}
+                  iconTrailing="waving_hand"
+                  onClick={onClick}
+                >
+                  {buttonText}
+                </Button>
+              </div>
+            );
+          })
         )
       )
     )}

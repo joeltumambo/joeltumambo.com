@@ -14,6 +14,7 @@ interface ButtonProps {
   iconLeading?: string;
   iconTrailing?: string;
   disabled?: boolean;
+  onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -24,6 +25,7 @@ const Button: React.FC<ButtonProps> = ({
   iconLeading,
   iconTrailing,
   disabled,
+  onClick,
   children,
 }) => {
   const buttonClass = classnames(
@@ -52,6 +54,7 @@ const Button: React.FC<ButtonProps> = ({
     component,
     {
       className: buttonClass,
+      onClick: onClick,
     },
     wrappedChildren
   );
