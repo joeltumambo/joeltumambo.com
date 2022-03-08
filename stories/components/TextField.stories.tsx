@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import TextField from "../../components/TextField";
 import Button from "../../components/Button";
+import emailjs from "@emailjs/browser";
 
 export default {
   title: "Components/TextField",
@@ -111,6 +112,26 @@ export const ContactForm = () => {
     console.log(values);
   }, [values]);
 
+  const send = () => {
+    emailjs
+      .send(
+        process.env.EMAILJS_SERVICE_ID ?? "",
+        process.env.EMAILJS_TEMPLATE_ID ?? "",
+        values,
+        process.env.EMAILJS_USER_ID ?? ""
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
+  const isValid = Object.values(values).every((value) => value);
+
   return (
     <div
       style={{
@@ -155,13 +176,15 @@ export const ContactForm = () => {
           }}
         >
           <Button
-            iconTrailing="north_east"
-            href={`mailto:joeltumambs@gmail.com?body=${encodeURI(values.message)}`}
+            iconTrailing="launch"
+            href={`mailto:joeltumambs@gmail.com?body=${encodeURI(
+              values.message
+            )}`}
             target="_blank"
           >
             Use email app
           </Button>
-          <Button filled iconTrailing="send">
+          <Button filled iconTrailing="send" onClick={send} disabled={!isValid}>
             Send
           </Button>
         </div>
