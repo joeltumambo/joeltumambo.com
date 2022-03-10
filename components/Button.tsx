@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "../styles/Button.module.css";
+import Typography from "./Typography";
 
 export type ButtonComponentType = "button" | "a";
 
@@ -16,7 +17,7 @@ interface ButtonProps {
   disabled?: boolean;
   onClick?: () => void;
   href?: string;
-  target?: string
+  target?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -39,13 +40,20 @@ const Button: React.FC<ButtonProps> = ({
     disabled && styles.disabled,
     styles[size]
   );
+  const sizeMapping = {
+    small: -1,
+    medium: 0,
+    large: 1,
+  };
   const wrappedChildren = (
     <>
       <div className={styles.container}>
         {iconLeading && (
           <span className="material-icons-round md-18">{iconLeading}</span>
         )}
-        <span>{children}</span>
+        <Typography size={sizeMapping[size]} weight={500} gutter={0}>
+          {children}
+        </Typography>
         {iconTrailing && (
           <span className="material-icons-round md-18">{iconTrailing}</span>
         )}
@@ -60,7 +68,7 @@ const Button: React.FC<ButtonProps> = ({
       className: buttonClass,
       onClick: onClick,
       href: href,
-      target: target
+      target: target,
     },
     wrappedChildren
   );
