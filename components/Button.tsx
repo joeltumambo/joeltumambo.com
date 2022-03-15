@@ -40,22 +40,31 @@ const Button: React.FC<ButtonProps> = ({
     disabled && styles.disabled,
     styles[size]
   );
-  const sizeMapping = {
+  const sizeMap = {
     small: -1,
     medium: 0,
     large: 1,
+  };
+  const iconSizeMap = {
+    small: "md-14",
+    medium: "md-16",
+    large: "md-18",
   };
   const wrappedChildren = (
     <>
       <div className={styles.container}>
         {iconLeading && (
-          <span className="material-icons-round md-18">{iconLeading}</span>
+          <span className={`material-icons-round ${iconSizeMap[size]}`}>
+            {iconLeading}
+          </span>
         )}
-        <Typography size={sizeMapping[size]} weight={500} gutter={0}>
+        <Typography size={sizeMap[size]} weight={500} gutter={0}>
           {children}
         </Typography>
         {iconTrailing && (
-          <span className="material-icons-round md-18">{iconTrailing}</span>
+          <span className={`material-icons-round ${iconSizeMap[size]}`}>
+            {iconTrailing}
+          </span>
         )}
       </div>
       <span className={styles.overlay}></span>
