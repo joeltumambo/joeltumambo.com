@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Button from "../components/Button";
-import ContactForm from "../components/ContactForm";
-import Typography from "../components/Typography";
+import Button from "../atoms/Button";
+import ContactForm from "../molecules/ContactForm";
+import Typography from "../atoms/Typography";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import TextField from "./TextField";
-import Button from "./Button";
+import TextField from "../atoms/TextField";
+import Button from "../atoms/Button";
 import emailjs from "@emailjs/browser";
 
 export const ContactForm = () => {

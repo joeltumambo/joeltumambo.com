@@ -1,7 +1,7 @@
-import ContactForm from "../../components/ContactForm";
+import ContactForm from "../../molecules/ContactForm";
 
 export default {
-  title: "Components/ContactForm",
+  title: "Molecules/ContactForm",
   component: ContactForm,
 };
 
