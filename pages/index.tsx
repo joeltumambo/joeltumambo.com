@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import Button from "../components/Button";
+import ContactForm from "../components/ContactForm";
 import Typography from "../components/Typography";
 import styles from "../styles/Home.module.css";
 
@@ -14,44 +14,161 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Typography size={3} gutter={0}>
-          Hello! my name is Joel,
-        </Typography>
-        <Typography><Typography size={3}>
-          a software engineer based in Philippines.
-        </Typography></Typography>
-        <Typography component="h1" size={10} weight={700} gutter={1}>
-          I help teams build beautiful apps through writing dev-friendly and
-          user-friendly software.
-        </Typography>
-        <div
+      <main>
+        <section
+          className={styles.section}
           style={{
-            display: "flex",
-            gap: "8px",
+            background: "#efebe9",
           }}
         >
-          <Button filled iconTrailing="waving_hand" size="large">
-            Say hello!
-          </Button>
-          <Button iconTrailing="arrow_forward" size="large">
-            See receipts
-          </Button>
-        </div>
+          <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                placeContent: "center",
+              }}
+            >
+              <Typography size={3} whiteSpace="pre" lineHeight={2}>
+                {`Hello! My name's Joel,\na software engineer\nbased in Philippines.`}
+              </Typography>
+              <Typography
+                component="h1"
+                size={20}
+                weight={900}
+                whiteSpace="pre"
+              >
+                {`I help people build\nbeautiful apps with\nbeautiful code.`}
+              </Typography>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "8px",
+                }}
+              >
+                <Button
+                  filled
+                  iconTrailing="waving_hand"
+                  size="large"
+                  href="#contact"
+                >
+                  Say hello!
+                </Button>
+                <Button iconTrailing="arrow_forward" size="large">
+                  See receipts
+                </Button>
+              </div>
+              <div>{""}</div>
+            </div>
+          </div>
+        </section>
+        <section
+          className={styles.section}
+          style={{
+            backgroundColor: "#fafafa",
+            borderBottom: "solid 1px #efebe9",
+          }}
+        >
+          <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                placeContent: "center",
+              }}
+            >
+              <Typography size={3} whiteSpace="pre" lineHeight={2}>
+                {`Words are boring,\nand they can lie.\nReal work can't.`}
+              </Typography>
+              <Typography
+                component="h2"
+                size={19}
+                weight={900}
+                whiteSpace="pre"
+              >
+                {`Here are my\nreceipts\nprojects.`}
+              </Typography>
+            </div>
+            <div>{""}</div>
+          </div>
+        </section>
+        <section
+          className={styles.section}
+          style={{
+            backgroundColor: "#fafafa",
+          }}
+        >
+          <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                placeContent: "center",
+              }}
+            >
+              <Typography
+                component="h2"
+                size={19}
+                weight={900}
+                whiteSpace="pre"
+                gutter={0.5}
+              >
+                {`What is beautiful?`}
+              </Typography>
+              <Typography size={3} whiteSpace="pre" lineHeight={2}>
+                {`Beauty is in...`}
+              </Typography>
+            </div>
+            <div>{""}</div>
+          </div>
+        </section>
+        <section
+          id="contact"
+          className={styles.section}
+          style={{
+            backgroundColor: "#e8eaf6",
+          }}
+        >
+          <div
+            style={{
+              display: "grid",
+              gap: "32px",
+              placeContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Typography
+                component="h2"
+                size={19}
+                weight={900}
+                whiteSpace="pre"
+                gutter={0.5}
+              >
+                {`Ready to build\nbeautiful?`}
+              </Typography>
+              <Typography size={3} whiteSpace="pre" lineHeight={2}>
+                {`Say hello and let's get started.`}
+              </Typography>
+            </div>
+            <div>
+              <ContactForm />
+            </div>
+          </div>
+        </section>
       </main>
 
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer> */}
+      <footer className={styles.footer}>
+        <div>
+          <Typography gutter={0} color="inherit" size={-1}>
+            © {new Date().getFullYear()} Joel Tumambo
+          </Typography>
+        </div>
+      </footer>
     </div>
   );
 };
