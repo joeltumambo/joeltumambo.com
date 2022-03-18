@@ -4,6 +4,8 @@ import Button from "../atoms/Button";
 import emailjs from "@emailjs/browser";
 
 export const ContactForm = () => {
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -15,18 +17,22 @@ export const ContactForm = () => {
   }, [values]);
 
   const send = () => {
+    setLoading(true);
     emailjs
       .send(
-        process.env.EMAILJS_SERVICE_ID ?? "",
-        process.env.EMAILJS_TEMPLATE_ID ?? "",
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? "",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "",
         values,
-        process.env.EMAILJS_USER_ID ?? ""
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID ?? ""
       )
       .then(
         (result) => {
+          setSuccess(true);
+          setLoading(false);
           console.log(result.text);
         },
         (error) => {
+          setLoading(false);
           console.log(error.text);
         }
       );
@@ -35,7 +41,7 @@ export const ContactForm = () => {
   const isValid = Object.values(values).every((value) => value);
 
   return (
-    <form
+    <div
       style={{
         display: "grid",
         gap: "24px",
@@ -48,14 +54,17 @@ export const ContactForm = () => {
         onChange={(e) => setValues({ ...values, name: e.target.value })}
         label="Name"
         placeholder="John"
+        disabled={loading || success}
       />
       <TextField
         id="email"
+        type="email"
         value={values.email}
         onChange={(e) => setValues({ ...values, email: e.target.value })}
         label="Email"
         placeholder="name@domain.com"
         helper="I need this so I can say hello back."
+        disabled={loading || success}
       />
       <TextField
         id="message"
@@ -64,6 +73,7 @@ export const ContactForm = () => {
         label="Message"
         placeholder="Say anything, really."
         multiline
+        disabled={loading || success}
       />
       <div
         style={{
@@ -74,18 +84,24 @@ export const ContactForm = () => {
       >
         <Button
           iconTrailing="launch"
-          href={`mailto:joeltumambs@gmail.com?body=${encodeURI(
+          href={`mailto:${process.env.NEXT_PUBLIC_EMAIL ?? ""}?body=${encodeURI(
             values.message
           )}`}
           target="_blank"
+          disabled={loading}
         >
           Use email app
         </Button>
-        <Button filled iconTrailing="send" onClick={send} disabled={!isValid}>
-          Send
+        <Button
+          filled
+          iconTrailing={"send"}
+          onClick={send}
+          disabled={!isValid || loading || success}
+        >
+          {loading ? "Sending" : success ? "Sent!" : "Send"}
         </Button>
       </div>
-    </form>
+    </div>
   );
 };
 
