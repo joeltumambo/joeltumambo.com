@@ -58,7 +58,7 @@ const Button: React.FC<ButtonProps> = ({
             {iconLeading}
           </span>
         )}
-        <Typography size={sizeMap[size]} weight={500} gutter={0}>
+        <Typography size={sizeMap[size]} weight={500} gutter={0} whiteSpace="none">
           {children}
         </Typography>
         {iconTrailing && (

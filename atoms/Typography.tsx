@@ -22,6 +22,7 @@ interface TypographyProps {
   gutter?: number;
   color?: "inherit" | "primary" | "neutral";
   whiteSpace?:
+    | "none"
     | "normal"
     | "pre"
     | "nowrap"
