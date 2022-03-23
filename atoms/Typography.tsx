@@ -16,7 +16,7 @@ export type TypographyWeightType = 300 | 400 | 500 | 700 | 900;
 
 interface TypographyProps {
   component?: TypographyComponentType;
-  size?: number;
+  size?: number | "inherit";
   lineHeight?: number;
   weight?: TypographyWeightType;
   gutter?: number;
@@ -46,7 +46,8 @@ const Typography: React.FC<TypographyProps> = ({
     {
       className: styles.container,
       style: {
-        fontSize: `${1 * (1 + (1 / 8) * size)}rem`,
+        fontSize:
+          size === "inherit" ? "inherit" : `${1 * (1 + (1 / 8) * size)}rem`,
         marginBottom: `${gutter}em`,
         fontWeight: weight,
         lineHeight: `${1 * (1 + (1 / 4) * lineHeight)}em`,
