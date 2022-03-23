@@ -9,7 +9,7 @@ export default {
 };
 
 const components: ButtonComponentType[] = ["a", "button"];
-const sizes: ButtonSizeType[] = ["small", "medium", "large"];
+const sizes: ButtonSizeType[] = ["small", "default", "large"];
 const filled = [false, true];
 const disabled = [false, true];
 
