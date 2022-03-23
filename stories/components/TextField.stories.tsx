@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import TextField from "../../atoms/TextField";
+import TextField from "../../components/TextField";
 
 export default {
-  title: "atoms/TextField",
+  title: "Components/TextField",
   component: TextField,
 };
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import TextField from "../atoms/TextField";
-import Button from "../atoms/Button";
 import emailjs from "@emailjs/browser";
+import TextField from "./TextField";
+import Button from "./Button";
 
 export const ContactForm = () => {
   const [loading, setLoading] = useState(false);

@@ -1,4 +1,4 @@
-import Typography from "../atoms/Typography";
+import Typography from "./Typography";
 import styles from "../styles/Home.module.css";
 
 const Footer = () => (

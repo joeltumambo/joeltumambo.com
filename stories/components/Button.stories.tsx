@@ -1,10 +1,10 @@
 import Button, {
   ButtonComponentType,
   ButtonSizeType,
-} from "../../atoms/Button";
+} from "../../components/Button";
 
 export default {
-  title: "Atoms/Button",
+  title: "Components/Button",
   component: Button,
 };
 

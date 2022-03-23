@@ -1,7 +1,7 @@
-import Typography, { TypographyWeightType } from "../../atoms/Typography";
+import Typography, { TypographyWeightType } from "../../components/Typography";
 
 export default {
-  title: "Atoms/Typography",
+  title: "Components/Typography",
   component: Typography,
 };
 
