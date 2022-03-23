@@ -4,6 +4,7 @@ import Button from "../atoms/Button";
 import ContactForm from "../molecules/ContactForm";
 import Typography from "../atoms/Typography";
 import styles from "../styles/Home.module.css";
+import Footer from "../organisms/Footer";
 
 const Home: NextPage = () => {
   return (
@@ -161,14 +162,7 @@ const Home: NextPage = () => {
           </div>
         </section>
       </main>
-
-      <footer className={styles.footer}>
-        <div>
-          <Typography gutter={0} color="inherit" size={-1}>
-            © {new Date().getFullYear()} Joel Tumambo
-          </Typography>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
