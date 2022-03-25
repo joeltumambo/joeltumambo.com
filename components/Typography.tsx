@@ -46,11 +46,10 @@ const Typography: React.FC<TypographyProps> = ({
     {
       className: styles.container,
       style: {
-        fontSize:
-          size === "inherit" ? "inherit" : `${1 * (1 + (1 / 8) * size)}rem`,
+        fontSize: size === "inherit" ? "inherit" : `${1 + (1 / 8) * size}rem`,
         marginBottom: `${gutter}em`,
         fontWeight: weight,
-        lineHeight: `${1 * (1 + (1 / 4) * lineHeight)}em`,
+        lineHeight: `${1 + (1 / 4) * lineHeight}em`,
         color: color,
         whiteSpace: whiteSpace,
       },
