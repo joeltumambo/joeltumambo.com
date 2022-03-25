@@ -49,4 +49,5 @@ export const parameters = {
     },
   },
   viewport: { viewports: materialViewports },
+  layout: "fullscreen",
 };
