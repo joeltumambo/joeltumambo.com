@@ -14,9 +14,18 @@ export type TypographyComponentType =
 
 export type TypographyWeightType = 300 | 400 | 500 | 700 | 900;
 
+type TypographySizeType = number | "inherit";
+
 interface TypographyProps {
   component?: TypographyComponentType;
-  size?: number | "inherit";
+  size?:
+    | TypographySizeType
+    | {
+        xs: TypographySizeType;
+        sm?: TypographySizeType;
+        md?: TypographySizeType;
+        lg?: TypographySizeType;
+      };
   lineHeight?: number;
   weight?: TypographyWeightType;
   gutter?: number;
@@ -31,6 +40,9 @@ interface TypographyProps {
     | "break-spaces";
 }
 
+const sizeString = (size?: TypographySizeType) =>
+  size ? (size == "inherit" ? size : `${1 + (1 / 8) * size}rem`) : undefined;
+
 const Typography: React.FC<TypographyProps> = ({
   component = "span",
   size = 0,
@@ -41,18 +53,38 @@ const Typography: React.FC<TypographyProps> = ({
   whiteSpace = "normal",
   children,
 }) => {
+  let xsSize;
+  let smSize;
+  let mdSize;
+  let lgSize;
+
+  if (typeof size === "object") {
+    xsSize = sizeString(size.xs);
+    smSize = sizeString(size.sm);
+    mdSize = sizeString(size.md);
+    lgSize = sizeString(size.lg);
+  } else {
+    xsSize = sizeString(size);
+    smSize = xsSize;
+    mdSize = xsSize;
+    lgSize = xsSize;
+  }
+
   return React.createElement(
     component,
     {
       className: styles.container,
       style: {
-        fontSize: size === "inherit" ? "inherit" : `${1 + (1 / 8) * size}rem`,
+        "--xs-size": xsSize,
+        "--sm-size": smSize,
+        "--md-size": mdSize,
+        "--lg-size": lgSize,
         marginBottom: `${gutter}em`,
         fontWeight: weight,
         lineHeight: `${1 + (1 / 4) * lineHeight}em`,
         color: color,
         whiteSpace: whiteSpace,
-      },
+      } as React.CSSProperties,
     },
     children
   );

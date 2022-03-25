@@ -1,3 +1,25 @@
 .container {
   all: unset;
+  font-size: var(--xs-size);
+}
+
+/* sm */
+@media only screen and (min-width: 600px) {
+  .container {
+    font-size: var(--sm-size);
+  }
+}
+
+/* md */
+@media only screen and (min-width: 1240px) {
+  .container {
+    font-size: var(--md-size);
+  }
+}
+
+/* lg */
+@media only screen and (min-width: 1440px) {
+  .container {
+    font-size: var(--lg-size);
+  }
 }

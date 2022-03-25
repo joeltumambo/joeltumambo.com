@@ -5,9 +5,8 @@ export default {
   component: Typography,
 };
 
-const sizes = [0, 1, 2, 3, 4, 5, 15, 16, 17, 18, 19, 20];
+const sizes = [0, 1, 2, 18, 19, 20];
 const weights: TypographyWeightType[] = [300, 400, 500, 700, 900];
-// const disabled = [false, true];
 
 export const AllTypography = () => (
   <div style={{ display: "grid", gap: "8px", placeItems: "flex-start" }}>
@@ -20,4 +19,18 @@ export const AllTypography = () => (
       ))
     )}
   </div>
+);
+
+export const Responsive = () => (
+  <Typography
+    size={{
+      xs: -1,
+      sm: 0,
+      md: 1,
+      lg: 2,
+    }}
+  >
+    xs: -1, sm: 0, md: 1, lg: 2, Magna incididunt anim officia ipsum commodo
+    aliqua.
+  </Typography>
 );
