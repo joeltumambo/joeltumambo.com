@@ -9,6 +9,37 @@ Object.defineProperty(NextImage, "default", {
   value: (props) => <OriginalNextImage {...props} unoptimized />,
 });
 
+const materialViewports = {
+  xs: {
+    name: "xs",
+    styles: {
+      width: "320px",
+      height: "100%",
+    },
+  },
+  sm: {
+    name: "sm",
+    styles: {
+      width: "600px",
+      height: "100%",
+    },
+  },
+  md: {
+    name: "md",
+    styles: {
+      width: "1240px",
+      height: "100%",
+    },
+  },
+  lg: {
+    name: "lg",
+    styles: {
+      width: "1440px",
+      height: "100%",
+    },
+  },
+};
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -17,4 +48,5 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  viewport: { viewports: materialViewports },
 };
