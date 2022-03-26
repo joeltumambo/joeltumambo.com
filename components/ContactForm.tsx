@@ -41,11 +41,14 @@ export const ContactForm = () => {
   const isValid = Object.values(values).every((value) => value);
 
   return (
-    <div
+    <form
       style={{
         display: "grid",
         gap: "24px",
         flex: 1,
+      }}
+      onSubmit={(e) => {
+        e.preventDefault();
       }}
     >
       <TextField
@@ -101,7 +104,7 @@ export const ContactForm = () => {
           {loading ? "Sending" : success ? "Sent!" : "Send"}
         </Button>
       </div>
-    </div>
+    </form>
   );
 };
 
