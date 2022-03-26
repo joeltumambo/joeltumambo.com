@@ -5,6 +5,11 @@ import ContactForm from "../components/ContactForm";
 import Typography from "../components/Typography";
 import Footer from "../components/Footer";
 import styles from "../styles/Home.module.css";
+import Grid from "../components/Grid";
+import ContactSection from "../page-components/ContactSection";
+import HeroSection from "../page-components/HeroSection";
+import ReceiptsSection from "../page-components/ReceiptsSection";
+import BeautySection from "../page-components/BeautySection";
 
 const Home: NextPage = () => {
   return (
@@ -22,106 +27,25 @@ const Home: NextPage = () => {
             background: "#efebe9",
           }}
         >
-          <div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                placeContent: "center",
-              }}
-            >
-              <Typography size={3} whiteSpace="pre" lineHeight={2}>
-                {`Hello! My name's Joel,\na software engineer\nbased in Philippines.`}
-              </Typography>
-              <Typography
-                component="h1"
-                size={20}
-                weight={900}
-                whiteSpace="pre"
-              >
-                {`I help people build\nbeautiful apps with\nbeautiful code.`}
-              </Typography>
-              <div
-                style={{
-                  display: "flex",
-                  gap: "8px",
-                }}
-              >
-                <Button
-                  filled
-                  iconTrailing="waving_hand"
-                  size="large"
-                  href="#contact"
-                >
-                  Say hello!
-                </Button>
-                <Button iconTrailing="arrow_forward" size="large">
-                  See receipts
-                </Button>
-              </div>
-              <div>{""}</div>
-            </div>
-          </div>
+          <HeroSection />
         </section>
         <section
           className={styles.section}
           style={{
             backgroundColor: "#fafafa",
-            borderBottom: "solid 1px #efebe9",
+            borderBottom: "solid 1px #d7ccc8",
           }}
         >
-          <div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                placeContent: "center",
-              }}
-            >
-              <Typography size={3} whiteSpace="pre" lineHeight={2}>
-                {`Words are boring,\nand they can lie.\nReal work can't.`}
-              </Typography>
-              <Typography
-                component="h2"
-                size={19}
-                weight={900}
-                whiteSpace="pre"
-              >
-                {`Here are my\nreceipts\nprojects.`}
-              </Typography>
-            </div>
-            <div>{""}</div>
-          </div>
+          <BeautySection />
         </section>
         <section
+          id="receipts"
           className={styles.section}
           style={{
             backgroundColor: "#fafafa",
           }}
         >
-          <div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                placeContent: "center",
-              }}
-            >
-              <Typography
-                component="h2"
-                size={19}
-                weight={900}
-                whiteSpace="pre"
-                gutter={0.5}
-              >
-                {`What is beautiful?`}
-              </Typography>
-              <Typography size={3} whiteSpace="pre" lineHeight={2}>
-                {`Beauty is in...`}
-              </Typography>
-            </div>
-            <div>{""}</div>
-          </div>
+          <ReceiptsSection />
         </section>
         <section
           id="contact"
@@ -130,36 +54,7 @@ const Home: NextPage = () => {
             backgroundColor: "#e8eaf6",
           }}
         >
-          <div
-            style={{
-              display: "grid",
-              gap: "32px",
-              placeContent: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <Typography
-                component="h2"
-                size={19}
-                weight={900}
-                whiteSpace="pre"
-                gutter={0.5}
-              >
-                {`Ready to build\nbeautiful?`}
-              </Typography>
-              <Typography size={3} whiteSpace="pre" lineHeight={2}>
-                {`Say hello and let's get started.`}
-              </Typography>
-            </div>
-            <div>
-              <ContactForm />
-            </div>
-          </div>
+          <ContactSection />
         </section>
       </main>
       <Footer />
