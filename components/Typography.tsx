@@ -38,6 +38,7 @@ interface TypographyProps {
     | "pre-wrap"
     | "pre-line"
     | "break-spaces";
+  align?: "left" | "right" | "center" | "justify" | "initial" | "inherit";
 }
 
 const sizeString = (size?: TypographySizeType) =>
@@ -51,6 +52,7 @@ const Typography: React.FC<TypographyProps> = ({
   gutter = 1,
   color = "inherit",
   whiteSpace = "normal",
+  align = "left",
   children,
 }) => {
   let xsSize;
@@ -60,9 +62,9 @@ const Typography: React.FC<TypographyProps> = ({
 
   if (typeof size === "object") {
     xsSize = sizeString(size.xs);
-    smSize = sizeString(size.sm);
-    mdSize = sizeString(size.md);
-    lgSize = sizeString(size.lg);
+    smSize = sizeString(size.sm) ?? xsSize;
+    mdSize = sizeString(size.md) ?? smSize;
+    lgSize = sizeString(size.lg) ?? mdSize;
   } else {
     xsSize = sizeString(size);
     smSize = xsSize;
@@ -79,6 +81,7 @@ const Typography: React.FC<TypographyProps> = ({
         "--sm-size": smSize,
         "--md-size": mdSize,
         "--lg-size": lgSize,
+        textAlign: align,
         marginBottom: `${gutter}em`,
         fontWeight: weight,
         lineHeight: `${1 + (1 / 4) * lineHeight}em`,

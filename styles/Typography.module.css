@@ -1,12 +1,14 @@
 .container {
   all: unset;
   font-size: var(--xs-size);
+  text-align: var(--xs-align);
 }
 
 /* sm */
 @media only screen and (min-width: 600px) {
   .container {
     font-size: var(--sm-size);
+    text-align: var(--sm-align);
   }
 }
 
@@ -14,6 +16,7 @@
 @media only screen and (min-width: 1240px) {
   .container {
     font-size: var(--md-size);
+    text-align: var(--md-align);
   }
 }
 
@@ -21,5 +24,6 @@
 @media only screen and (min-width: 1440px) {
   .container {
     font-size: var(--lg-size);
+    text-align: var(--lg-align);
   }
 }
