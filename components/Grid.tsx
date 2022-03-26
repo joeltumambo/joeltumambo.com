@@ -10,6 +10,9 @@ interface GridProps {
   sm?: number;
   md?: number;
   lg?: number;
+  direction?: string
+  alignItems?: string
+  alignContent?: string
 }
 
 const Grid: React.FC<GridProps> = ({
@@ -20,6 +23,9 @@ const Grid: React.FC<GridProps> = ({
   sm,
   md,
   lg,
+  direction,
+  alignItems,
+  alignContent,
   children,
 }) => {
   const gap = spacing * 8;
@@ -40,6 +46,9 @@ const Grid: React.FC<GridProps> = ({
             "--md-width": `${100 / mdColumns}%`,
             "--lg-width": `${100 / lgColumns}%`,
           }),
+          flexDirection: direction,
+          alignItems: alignItems,
+          alignContent: alignContent,
         } as React.CSSProperties
       }
     >
