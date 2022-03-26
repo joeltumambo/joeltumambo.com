@@ -16,6 +16,14 @@ export type TypographyWeightType = 300 | 400 | 500 | 700 | 900;
 
 type TypographySizeType = number | "inherit";
 
+type TypographyAlignType =
+  | "left"
+  | "right"
+  | "center"
+  | "justify"
+  | "initial"
+  | "inherit";
+
 interface TypographyProps {
   component?: TypographyComponentType;
   size?:
@@ -38,7 +46,14 @@ interface TypographyProps {
     | "pre-wrap"
     | "pre-line"
     | "break-spaces";
-  align?: "left" | "right" | "center" | "justify" | "initial" | "inherit";
+  align?:
+    | TypographyAlignType
+    | {
+        xs: TypographyAlignType;
+        sm?: TypographyAlignType;
+        md?: TypographyAlignType;
+        lg?: TypographyAlignType;
+      };
 }
 
 const sizeString = (size?: TypographySizeType) =>
@@ -60,6 +75,11 @@ const Typography: React.FC<TypographyProps> = ({
   let mdSize;
   let lgSize;
 
+  let xsAlign;
+  let smAlign;
+  let mdAlign;
+  let lgAlign;
+
   if (typeof size === "object") {
     xsSize = sizeString(size.xs);
     smSize = sizeString(size.sm) ?? xsSize;
@@ -72,6 +92,18 @@ const Typography: React.FC<TypographyProps> = ({
     lgSize = xsSize;
   }
 
+  if (typeof align === "object") {
+    xsAlign = align.xs;
+    smAlign = align.sm ?? xsAlign;
+    mdAlign = align.md ?? smAlign;
+    lgAlign = align.lg ?? mdAlign;
+  } else {
+    xsAlign = align;
+    smAlign = xsAlign;
+    mdAlign = xsAlign;
+    lgAlign = xsAlign;
+  }
+
   return React.createElement(
     component,
     {
@@ -81,7 +113,10 @@ const Typography: React.FC<TypographyProps> = ({
         "--sm-size": smSize,
         "--md-size": mdSize,
         "--lg-size": lgSize,
-        textAlign: align,
+        "--xs-align": xsAlign,
+        "--sm-align": smAlign,
+        "--md-align": mdAlign,
+        "--lg-align": lgAlign,
         marginBottom: `${gutter}em`,
         fontWeight: weight,
         lineHeight: `${1 + (1 / 4) * lineHeight}em`,
