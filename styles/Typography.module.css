@@ -1,5 +1,6 @@
 .container {
   all: unset;
+  display: block;
   font-size: var(--xs-size);
   text-align: var(--xs-align);
 }

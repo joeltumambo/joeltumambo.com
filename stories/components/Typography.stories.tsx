@@ -21,7 +21,7 @@ export const AllTypography = () => (
   </div>
 );
 
-export const Responsive = () => (
+export const ResponsiveSize = () => (
   <Typography
     size={{
       xs: -1,
@@ -31,6 +31,19 @@ export const Responsive = () => (
     }}
   >
     xs: -1, sm: 0, md: 1, lg: 2, Magna incididunt anim officia ipsum commodo
+    aliqua.
+  </Typography>
+);
+
+export const ResponsiveAlign = () => (
+  <Typography
+    component="span"
+    align={{
+      xs: "center",
+      sm: "left",
+    }}
+  >
+    xs: "center", sm: "left", Magna incididunt anim officia ipsum commodo
     aliqua.
   </Typography>
 );

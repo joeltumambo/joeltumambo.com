@@ -56,8 +56,8 @@ interface TypographyProps {
       };
 }
 
-const sizeString = (size?: TypographySizeType) =>
-  size ? (size == "inherit" ? size : `${1 + (1 / 8) * size}rem`) : undefined;
+const sizeString = (size: TypographySizeType) =>
+  size === "inherit" ? size : `${1 + (1 / 8) * size}rem`;
 
 const Typography: React.FC<TypographyProps> = ({
   component = "span",
@@ -82,9 +82,9 @@ const Typography: React.FC<TypographyProps> = ({
 
   if (typeof size === "object") {
     xsSize = sizeString(size.xs);
-    smSize = sizeString(size.sm) ?? xsSize;
-    mdSize = sizeString(size.md) ?? smSize;
-    lgSize = sizeString(size.lg) ?? mdSize;
+    smSize = size.sm ? sizeString(size.sm) : xsSize;
+    mdSize = size.md ? sizeString(size.md) : smSize;
+    lgSize = size.lg ? sizeString(size.lg) : mdSize;
   } else {
     xsSize = sizeString(size);
     smSize = xsSize;
