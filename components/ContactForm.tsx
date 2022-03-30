@@ -37,63 +37,69 @@ export const ContactForm = () => {
 
   return (
     <form
-      style={{
-        display: "grid",
-        gap: "24px",
-      }}
       onSubmit={(e) => {
         e.preventDefault();
       }}
     >
-      <TextField
-        id="name"
-        value={values.name}
-        onChange={(e) => setValues({ ...values, name: e.target.value })}
-        label="Name"
-        placeholder="John"
-        disabled={loading || success}
-      />
-      <TextField
-        id="email"
-        type="email"
-        value={values.email}
-        onChange={(e) => setValues({ ...values, email: e.target.value })}
-        label="Email"
-        placeholder="name@domain.com"
-        helper="I need this so I can say hello back."
-        disabled={loading || success}
-      />
-      <TextField
-        id="message"
-        value={values.message}
-        onChange={(e) => setValues({ ...values, message: e.target.value })}
-        label="Message"
-        placeholder="Say anything, really."
-        multiline
-        disabled={loading || success}
-      />
-      <Grid container placeContent="flex-end">
-        <Grid item xs={6} sm={false}>
-          <Button
-            iconTrailing="launch"
-            href={`mailto:${
-              process.env.NEXT_PUBLIC_EMAIL ?? ""
-            }?body=${encodeURI(values.message)}`}
-            target="_blank"
-            disabled={loading}
-          >
-            Use email app
-          </Button>
+      <Grid container spacing={3}>
+        <Grid item sm={6} md={12}>
+          <TextField
+            id="name"
+            value={values.name}
+            onChange={(e) => setValues({ ...values, name: e.target.value })}
+            label="Name"
+            placeholder="John"
+            disabled={loading || success}
+          />
         </Grid>
-        <Grid item xs={6} sm={false}>
-          <Button
-            filled
-            iconTrailing={"send"}
-            onClick={send}
-            disabled={!isValid || loading || success}
-          >
-            {loading ? "Sending" : success ? "Sent!" : "Send"}
-          </Button>
+        <Grid item sm={6} md={12}>
+          <TextField
+            id="email"
+            type="email"
+            value={values.email}
+            onChange={(e) => setValues({ ...values, email: e.target.value })}
+            label="Email"
+            placeholder="name@domain.com"
+            helper="I need this so I can say hello back."
+            disabled={loading || success}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            id="message"
+            value={values.message}
+            onChange={(e) => setValues({ ...values, message: e.target.value })}
+            label="Message"
+            placeholder="Say anything, really."
+            multiline
+            disabled={loading || success}
+          />
+        </Grid>
+        <Grid item>
+          <Grid container placeContent="flex-end">
+            <Grid item xs={6} sm={false}>
+              <Button
+                iconTrailing="launch"
+                href={`mailto:${
+                  process.env.NEXT_PUBLIC_EMAIL ?? ""
+                }?body=${encodeURI(values.message)}`}
+                target="_blank"
+                disabled={loading}
+              >
+                Use email app
+              </Button>
+            </Grid>
+            <Grid item xs={6} sm={false}>
+              <Button
+                filled
+                iconTrailing={"send"}
+                onClick={send}
+                disabled={!isValid || loading || success}
+              >
+                {loading ? "Sending" : success ? "Sent!" : "Send"}
+              </Button>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </form>
