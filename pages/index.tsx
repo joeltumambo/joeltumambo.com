@@ -24,7 +24,7 @@ const Home: NextPage = () => {
         <Container background="#efebe9">
           <HeroSection />
         </Container>
-        <Container background="#fafafa">
+        <Container background="#fafafa" id="learn">
           <BeautySection />
         </Container>
         {/* <div

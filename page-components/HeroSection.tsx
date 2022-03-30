@@ -44,8 +44,8 @@ const HeroSection = () => (
           </Button>
         </Grid>
         <Grid item xs={6}>
-          <Button iconTrailing="arrow_forward" size="large" href="#receipts">
-            See receipts
+          <Button iconTrailing="arrow_forward" size="large" href="#learn">
+            Learn more
           </Button>
         </Grid>
       </Grid>
