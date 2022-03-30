@@ -24,6 +24,15 @@ type TypographyAlignType =
   | "initial"
   | "inherit";
 
+type TypographyWhiteSpaceType =
+  | "none"
+  | "normal"
+  | "pre"
+  | "nowrap"
+  | "pre-wrap"
+  | "pre-line"
+  | "break-spaces";
+
 interface TypographyProps {
   component?: TypographyComponentType;
   size?:
@@ -39,13 +48,13 @@ interface TypographyProps {
   gutter?: number;
   color?: "inherit" | "primary" | "neutral";
   whiteSpace?:
-    | "none"
-    | "normal"
-    | "pre"
-    | "nowrap"
-    | "pre-wrap"
-    | "pre-line"
-    | "break-spaces";
+    | TypographyWhiteSpaceType
+    | {
+        xs: TypographyWhiteSpaceType;
+        sm?: TypographyWhiteSpaceType;
+        md?: TypographyWhiteSpaceType;
+        lg?: TypographyWhiteSpaceType;
+      };
   align?:
     | TypographyAlignType
     | {
@@ -80,6 +89,11 @@ const Typography: React.FC<TypographyProps> = ({
   let mdAlign;
   let lgAlign;
 
+  let xsWhiteSpace;
+  let smWhiteSpace;
+  let mdWhiteSpace;
+  let lgWhiteSpace;
+
   if (typeof size === "object") {
     xsSize = sizeString(size.xs);
     smSize = size.sm ? sizeString(size.sm) : xsSize;
@@ -104,6 +118,18 @@ const Typography: React.FC<TypographyProps> = ({
     lgAlign = xsAlign;
   }
 
+  if (typeof whiteSpace === "object") {
+    xsWhiteSpace = whiteSpace.xs;
+    smWhiteSpace = whiteSpace.sm ?? xsWhiteSpace;
+    mdWhiteSpace = whiteSpace.md ?? smWhiteSpace;
+    lgWhiteSpace = whiteSpace.lg ?? mdWhiteSpace;
+  } else {
+    xsWhiteSpace = whiteSpace;
+    smWhiteSpace = xsWhiteSpace;
+    mdWhiteSpace = xsWhiteSpace;
+    lgWhiteSpace = xsWhiteSpace;
+  }
+
   return React.createElement(
     component,
     {
@@ -117,11 +143,14 @@ const Typography: React.FC<TypographyProps> = ({
         "--sm-align": smAlign,
         "--md-align": mdAlign,
         "--lg-align": lgAlign,
+        "--xs-white-space": xsWhiteSpace,
+        "--sm-white-space": smWhiteSpace,
+        "--md-white-space": mdWhiteSpace,
+        "--lg-white-space": lgWhiteSpace,
         marginBottom: `${gutter}em`,
         fontWeight: weight,
         lineHeight: `${1 + (1 / 4) * lineHeight}em`,
         color: color,
-        whiteSpace: whiteSpace,
       } as React.CSSProperties,
     },
     children

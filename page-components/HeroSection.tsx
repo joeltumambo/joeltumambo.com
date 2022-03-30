@@ -25,7 +25,10 @@ const HeroSection = () => (
           md: 20,
         }}
         weight={900}
-        whiteSpace="pre"
+        whiteSpace={{
+          xs: "normal",
+          sm: "pre",
+        }}
       >
         {`I help people build\nbeautiful apps with\nbeautiful code.`}
       </Typography>

@@ -9,32 +9,24 @@ interface StatementProps {
 }
 
 const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
-  <div
-    style={{
-      display: "flex",
-      gap: "16px",
-    }}
-  >
-    <div
-      style={{
-        fontSize: "24px",
-        background: "#efebe9",
-        color: "#bcaaa4",
-        display: "grid",
-        placeItems: "center",
-        borderRadius: "48px",
-        height: "48px",
-        width: "48px",
-      }}
-    >
-      <span className="material-icons-round">{icon}</span>
-    </div>
-    <div
-      style={{
-        display: "grid",
-        flex: 1,
-      }}
-    >
+  <Grid container spacing={0}>
+    <Grid item xs={2}>
+      <div
+        style={{
+          fontSize: "24px",
+          background: "#efebe9",
+          color: "#bcaaa4",
+          display: "grid",
+          placeItems: "center",
+          borderRadius: "48px",
+          height: "48px",
+          width: "48px",
+        }}
+      >
+        <span className="material-icons-round">{icon}</span>
+      </div>
+    </Grid>
+    <Grid item xs={10}>
       <Typography
         component="h3"
         size={{
@@ -49,6 +41,7 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
         {title}
       </Typography>
       <Typography
+        component="p"
         size={{
           xs: 0,
           sm: 1,
@@ -59,8 +52,8 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
       >
         {body}
       </Typography>
-    </div>
-  </div>
+    </Grid>
+  </Grid>
 );
 
 const statements: StatementProps[] = [
@@ -105,7 +98,10 @@ const BeautySection = () => (
           md: 19,
         }}
         weight={900}
-        whiteSpace="normal"
+        whiteSpace={{
+          xs: "normal",
+          md: "pre",
+        }}
         align={{ xs: "center", sm: "left" }}
       >
         {`What is\nbeautiful?`}
