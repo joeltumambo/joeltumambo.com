@@ -13,10 +13,6 @@ export const ContactForm = () => {
     message: "",
   });
 
-  useEffect(() => {
-    console.log(values);
-  }, [values]);
-
   const send = () => {
     setLoading(true);
     emailjs
@@ -27,14 +23,12 @@ export const ContactForm = () => {
         process.env.NEXT_PUBLIC_EMAILJS_USER_ID ?? ""
       )
       .then(
-        (result) => {
+        () => {
           setSuccess(true);
           setLoading(false);
-          console.log(result.text);
         },
-        (error) => {
+        () => {
           setLoading(false);
-          console.log(error.text);
         }
       );
   };
