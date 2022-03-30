@@ -10,10 +10,12 @@ interface GridProps {
   sm?: number;
   md?: number;
   lg?: number;
-  direction?: string
-  alignItems?: string
-  alignContent?: string
+  direction?: string;
+  alignItems?: string;
+  alignContent?: string;
 }
+
+const flexString = (columns: number): string => `0 0 calc(${100 / columns}%)`;
 
 const Grid: React.FC<GridProps> = ({
   container,
@@ -34,17 +36,24 @@ const Grid: React.FC<GridProps> = ({
   const mdColumns = 12 / (md ?? sm ?? xs);
   const lgColumns = 12 / (lg ?? md ?? sm ?? xs);
 
+  const xsFlex = flexString(xsColumns);
+  const smFlex = flexString(smColumns);
+  const mdFlex = flexString(mdColumns);
+  const lgFlex = flexString(lgColumns);
+
   return (
     <div
       className={classnames(container && styles.container, item && styles.item)}
       style={
         {
-          ...(container && { "--gap": `${gap}px` }),
+          ...(container && {
+            "--gap": `${gap}px`,
+          }),
           ...(item && {
-            "--xs-width": `${100 / xsColumns}%`,
-            "--sm-width": `${100 / smColumns}%`,
-            "--md-width": `${100 / mdColumns}%`,
-            "--lg-width": `${100 / lgColumns}%`,
+            "--xs-flex": `${xsFlex}`,
+            "--sm-flex": `${smFlex}`,
+            "--md-flex": `${mdFlex}`,
+            "--lg-flex": `${lgFlex}`,
           }),
           flexDirection: direction,
           alignItems: alignItems,
