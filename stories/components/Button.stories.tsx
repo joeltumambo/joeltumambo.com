@@ -14,7 +14,13 @@ const filled = [false, true];
 const disabled = [false, true];
 
 export const AllButtons = () => (
-  <div style={{ display: "grid", gap: "8px", placeItems: "flex-start" }}>
+  <div
+    style={{
+      display: "flex",
+      gap: "8px",
+      flexDirection: "column",
+    }}
+  >
     {sizes.map((size) =>
       components.map((component) =>
         filled.map((filled) =>
@@ -27,7 +33,6 @@ export const AllButtons = () => (
                 style={{
                   display: "flex",
                   gap: "8px",
-                  placeItems: "flex-start",
                 }}
               >
                 <Button

@@ -18,7 +18,6 @@ interface ButtonProps {
   onClick?: () => void;
   href?: string;
   target?: string;
-  fullWidth?: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -32,7 +31,6 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   href,
   target,
-  fullWidth,
   children,
 }) => {
   const buttonClass = classnames(
@@ -40,7 +38,6 @@ const Button: React.FC<ButtonProps> = ({
     styles[brightness],
     filled && styles.filled,
     disabled && styles.disabled,
-    fullWidth && styles["full-width"],
     styles[size]
   );
   const wrappedChildren = (
@@ -53,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({
           size="inherit"
           weight={500}
           gutter={0}
-          whiteSpace="none"
+          whiteSpace="pre"
           lineHeight={0}
         >
           {children}
