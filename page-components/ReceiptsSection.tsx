@@ -4,8 +4,8 @@ import Grid from "../components/Grid";
 import Typography from "../components/Typography";
 
 const ReceiptsSection = () => (
-  <Grid container alignContent="center">
-    <Grid item container direction="column" md={6}>
+  <Grid container>
+    <Grid item container md={6}>
       <Typography
         size={{
           xs: 1,

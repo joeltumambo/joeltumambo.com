@@ -4,7 +4,7 @@ import Grid from "../components/Grid";
 import Typography from "../components/Typography";
 
 const ContactSection = () => (
-  <Grid container alignContent="center">
+  <Grid container>
     <Grid item md={6}>
       <Typography
         component="h2"

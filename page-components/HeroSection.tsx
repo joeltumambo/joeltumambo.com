@@ -4,8 +4,8 @@ import Grid from "../components/Grid";
 import Typography from "../components/Typography";
 
 const HeroSection = () => (
-  <Grid container alignContent="center">
-    <Grid item container direction="column" md={6}>
+  <Grid container>
+    <Grid item md={6}>
       <Typography
         size={{
           xs: 1,
@@ -29,19 +29,23 @@ const HeroSection = () => (
       >
         {`I help people build\nbeautiful apps with\nbeautiful code.`}
       </Typography>
-      <div
-        style={{
-          display: "flex",
-          gap: "8px",
-        }}
-      >
-        <Button filled iconTrailing="waving_hand" size="large" href="#contact">
-          Say hello!
-        </Button>
-        <Button iconTrailing="arrow_forward" size="large" href="#receipts">
-          See receipts
-        </Button>
-      </div>
+      <Grid container>
+        <Grid item xs={6}>
+          <Button
+            filled
+            iconTrailing="waving_hand"
+            size="large"
+            href="#contact"
+          >
+            Say hello!
+          </Button>
+        </Grid>
+        <Grid item xs={6}>
+          <Button iconTrailing="arrow_forward" size="large" href="#receipts">
+            See receipts
+          </Button>
+        </Grid>
+      </Grid>
     </Grid>
   </Grid>
 );

@@ -11,8 +11,8 @@ interface GridProps {
   md?: number;
   lg?: number;
   direction?: string;
-  alignItems?: string;
-  alignContent?: string;
+  placeItems?: string;
+  placeContent?: string;
 }
 
 const flexString = (columns: number): string => `0 0 calc(${100 / columns}%)`;
@@ -26,8 +26,8 @@ const Grid: React.FC<GridProps> = ({
   md,
   lg,
   direction,
-  alignItems,
-  alignContent,
+  placeItems,
+  placeContent,
   children,
 }) => {
   const gap = spacing * 8;
@@ -56,8 +56,8 @@ const Grid: React.FC<GridProps> = ({
             "--lg-flex": `${lgFlex}`,
           }),
           flexDirection: direction,
-          alignItems: alignItems,
-          alignContent: alignContent,
+          placeItems: placeItems,
+          placeContent: placeContent,
         } as React.CSSProperties
       }
     >

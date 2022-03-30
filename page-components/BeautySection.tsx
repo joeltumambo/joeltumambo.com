@@ -82,7 +82,7 @@ const statements: StatementProps[] = [
 ];
 
 const BeautySection = () => (
-  <Grid container alignContent="center">
+  <Grid container>
     <Grid item md={6}>
       <Typography
         size={{
