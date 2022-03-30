@@ -1,10 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Button from "../components/Button";
-import ContactForm from "../components/ContactForm";
-import Typography from "../components/Typography";
 import Footer from "../components/Footer";
-import Grid from "../components/Grid";
 import ContactSection from "../page-components/ContactSection";
 import HeroSection from "../page-components/HeroSection";
 import ReceiptsSection from "../page-components/ReceiptsSection";

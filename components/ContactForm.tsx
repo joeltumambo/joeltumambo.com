@@ -46,7 +46,6 @@ export const ContactForm = () => {
       style={{
         display: "grid",
         gap: "24px",
-        flex: 1,
       }}
       onSubmit={(e) => {
         e.preventDefault();
@@ -79,8 +78,8 @@ export const ContactForm = () => {
         multiline
         disabled={loading || success}
       />
-      <Grid container>
-        <Grid item xs={6}>
+      <Grid container placeContent="flex-end">
+        <Grid item xs={6} sm={false}>
           <Button
             iconTrailing="launch"
             href={`mailto:${
@@ -92,7 +91,7 @@ export const ContactForm = () => {
             Use email app
           </Button>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={6} sm={false}>
           <Button
             filled
             iconTrailing={"send"}

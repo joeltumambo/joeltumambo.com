@@ -9,15 +9,16 @@ interface StatementProps {
 }
 
 const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
-  <Grid container spacing={0}>
-    <Grid item xs={2}>
+  <Grid container spacing={2}>
+    <Grid item xs={false}>
       <div
         style={{
           fontSize: "24px",
           background: "#efebe9",
           color: "#bcaaa4",
-          display: "grid",
+          display: "flex",
           placeItems: "center",
+          placeContent: "center",
           borderRadius: "48px",
           height: "48px",
           width: "48px",
@@ -26,7 +27,7 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
         <span className="material-icons-round">{icon}</span>
       </div>
     </Grid>
-    <Grid item xs={10}>
+    <Grid item xs={true}>
       <Typography
         component="h3"
         size={{
@@ -35,7 +36,6 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
           md: 3,
         }}
         weight={700}
-        whiteSpace="pre"
         color="#6d4c41"
         gutter={0.5}
       >
@@ -49,7 +49,7 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
           md: 2,
         }}
         lineHeight={2}
-        gutter={2}
+        gutter={0}
         color="#6d4c41"
       >
         {body}
@@ -67,7 +67,7 @@ const statements: StatementProps[] = [
   {
     icon: "code",
     title: "Beautiful DX",
-    body: "DX is dev-experience. Happy devs are productive. When we work fast, users are happy.",
+    body: "DX is dev-experience. Happy devs are productive. When we work fast, we beat the competitor.",
   },
   {
     icon: "app_shortcut",
@@ -90,7 +90,7 @@ const BeautySection = () => (
         lineHeight={2}
         align={{ xs: "center", sm: "left" }}
       >
-        {`I specialize in beautiful\nfront-end and design systems.`}
+        {`I specialize in front-end\nand design systems.`}
       </Typography>
       <Typography
         component="h2"
@@ -110,9 +110,13 @@ const BeautySection = () => (
       </Typography>
     </Grid>
     <Grid item md={6}>
-      {statements.map((statement) => (
-        <Statement key={statement.title} {...statement} />
-      ))}
+      <Grid container spacing={3}>
+        {statements.map((statement) => (
+          <Grid item key={statement.title}>
+            <Statement {...statement} />
+          </Grid>
+        ))}
+      </Grid>
     </Grid>
   </Grid>
 );
