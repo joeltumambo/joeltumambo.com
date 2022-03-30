@@ -27,14 +27,14 @@ const Home: NextPage = () => {
         <Container background="#fafafa">
           <BeautySection />
         </Container>
-        <div
+        {/* <div
           style={{
             borderTop: "1px solid #efebe9",
           }}
-        />
-        <Container id="receipts" background="#fafafa">
+        /> */}
+        {/* <Container id="receipts" background="#fafafa">
           <ReceiptsSection />
-        </Container>
+        </Container> */}
         <Container id="contact" background="#e8eaf6">
           <ContactSection />
         </Container>
