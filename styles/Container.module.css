@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  place-content: center;
+  place-items: center;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  margin: 16px;
+}
+
+/* sm */
+@media only screen and (min-width: 600px) {
+  .wrapper {
+    margin: 32px;
+  }
+}
+
+@media only screen and (min-width: 905px) {
+  .wrapper {
+    max-width: 840px;
+    margin: unset;
+  }
+}
+
+/* md */
+@media only screen and (min-width: 1240px) {
+  .wrapper {
+    margin: 200px;
+  }
+}
+
+/* lg */
+@media only screen and (min-width: 1440px) {
+  .wrapper {
+    max-width: 1040px;
+    margin: unset;
+  }
+}
