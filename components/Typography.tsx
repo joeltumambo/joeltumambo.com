@@ -46,7 +46,7 @@ interface TypographyProps {
   lineHeight?: number;
   weight?: TypographyWeightType;
   gutter?: number;
-  color?: "inherit" | "primary" | "neutral";
+  color?: string;
   whiteSpace?:
     | TypographyWhiteSpaceType
     | {

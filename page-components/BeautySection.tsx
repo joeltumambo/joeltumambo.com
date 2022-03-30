@@ -36,6 +36,7 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
         }}
         weight={700}
         whiteSpace="pre"
+        color="#6d4c41"
         gutter={0.5}
       >
         {title}
@@ -49,6 +50,7 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
         }}
         lineHeight={2}
         gutter={2}
+        color="#6d4c41"
       >
         {body}
       </Typography>
