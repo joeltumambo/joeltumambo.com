@@ -80,3 +80,17 @@ export const NestedGrids1 = () => (
     </Grid>
   </Grid>
 );
+
+export const AutoLayout = () => (
+  <Grid container spacing={1}>
+    <Grid item xs={false}>
+      <Cell>xs=auto</Cell>
+    </Grid>
+    <Grid item xs={8}>
+      <Cell>xs=8</Cell>
+    </Grid>
+    <Grid item xs={true}>
+      <Cell>xs=true</Cell>
+    </Grid>
+  </Grid>
+);

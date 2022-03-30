@@ -2,44 +2,47 @@ import React from "react";
 import classnames from "classnames";
 import styles from "../styles/Grid.module.css";
 
+type GridFlexType = number | boolean;
+
 interface GridProps {
   container?: boolean;
   item?: boolean;
   spacing?: number;
-  xs?: number;
-  sm?: number;
-  md?: number;
-  lg?: number;
+  xs?: GridFlexType;
+  sm?: GridFlexType;
+  md?: GridFlexType;
+  lg?: GridFlexType;
   direction?: string;
   placeItems?: string;
   placeContent?: string;
 }
 
-const flexString = (columns: number): string => `0 0 calc(${100 / columns}%)`;
+const flexString = (flex: GridFlexType): string => {
+  if (typeof flex === "number") {
+    const columns = 12 / flex;
+    return `0 0 ${100 / columns}%`;
+  }
+  return `${flex ? 1 : 0} 0`;
+};
 
 const Grid: React.FC<GridProps> = ({
   container,
   item,
   spacing = 1,
   xs = 12,
-  sm,
-  md,
-  lg,
+  sm = xs,
+  md = sm,
+  lg = md,
   direction,
   placeItems,
   placeContent,
   children,
 }) => {
   const gap = spacing * 8;
-  const xsColumns = 12 / xs;
-  const smColumns = 12 / (sm ?? xs);
-  const mdColumns = 12 / (md ?? sm ?? xs);
-  const lgColumns = 12 / (lg ?? md ?? sm ?? xs);
-
-  const xsFlex = flexString(xsColumns);
-  const smFlex = flexString(smColumns);
-  const mdFlex = flexString(mdColumns);
-  const lgFlex = flexString(lgColumns);
+  const xsFlex = flexString(xs);
+  const smFlex = flexString(sm);
+  const mdFlex = flexString(md);
+  const lgFlex = flexString(lg);
 
   return (
     <div
