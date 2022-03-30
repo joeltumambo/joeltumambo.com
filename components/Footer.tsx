@@ -10,7 +10,7 @@ const Footer = () => (
       padding: "16px 0",
     }}
   >
-    <Container height="48px">
+    <Container minHeight="48px">
       <Typography gutter={0} color="inherit" size={{ xs: -2, sm: -1 }}>
         © {new Date().getFullYear()} Joel Tumambo
       </Typography>

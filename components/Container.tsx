@@ -5,14 +5,14 @@ interface ContainerProps {
   id?: string;
   component?: "section" | "div";
   background?: string;
-  height?: string;
+  minHeight?: string;
 }
 
 const Container: React.FC<ContainerProps> = ({
   id,
   component = "section",
   background,
-  height = "90vh",
+  minHeight = "90vh",
   children,
 }) => {
   return React.createElement(
@@ -22,7 +22,7 @@ const Container: React.FC<ContainerProps> = ({
       className: styles.container,
       style: {
         background: background,
-        height: height
+        minHeight: minHeight
       } as React.CSSProperties,
     },
     <div className={styles.wrapper}>{children}</div>
