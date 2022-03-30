@@ -5,7 +5,7 @@ import Typography from "../components/Typography";
 
 const ContactSection = () => (
   <Grid container alignContent="center">
-    <Grid item container direction="column" md={6}>
+    <Grid item md={6}>
       <Typography
         component="h2"
         size={{

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import TextField from "./TextField";
 import Button from "./Button";
+import Grid from "./Grid";
 
 export const ContactForm = () => {
   const [loading, setLoading] = useState(false);
@@ -78,32 +79,30 @@ export const ContactForm = () => {
         multiline
         disabled={loading || success}
       />
-      <div
-        style={{
-          display: "flex",
-          gap: "8px",
-          placeContent: "end",
-        }}
-      >
-        <Button
-          iconTrailing="launch"
-          href={`mailto:${process.env.NEXT_PUBLIC_EMAIL ?? ""}?body=${encodeURI(
-            values.message
-          )}`}
-          target="_blank"
-          disabled={loading}
-        >
-          Use email app
-        </Button>
-        <Button
-          filled
-          iconTrailing={"send"}
-          onClick={send}
-          disabled={!isValid || loading || success}
-        >
-          {loading ? "Sending" : success ? "Sent!" : "Send"}
-        </Button>
-      </div>
+      <Grid container>
+        <Grid item xs={6}>
+          <Button
+            iconTrailing="launch"
+            href={`mailto:${
+              process.env.NEXT_PUBLIC_EMAIL ?? ""
+            }?body=${encodeURI(values.message)}`}
+            target="_blank"
+            disabled={loading}
+          >
+            Use email app
+          </Button>
+        </Grid>
+        <Grid item xs={6}>
+          <Button
+            filled
+            iconTrailing={"send"}
+            onClick={send}
+            disabled={!isValid || loading || success}
+          >
+            {loading ? "Sending" : success ? "Sent!" : "Send"}
+          </Button>
+        </Grid>
+      </Grid>
     </form>
   );
 };
