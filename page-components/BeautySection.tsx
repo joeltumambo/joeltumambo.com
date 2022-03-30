@@ -67,23 +67,36 @@ const statements: StatementProps[] = [
   {
     icon: "sentiment_very_satisfied",
     title: "Beautiful UX",
-    body: "Good user-experience makes the user stay and return. When they do, we succeed.",
+    body: "User-experience makes or breaks an app. We want our users to stay and return.",
   },
   {
     icon: "code",
     title: "Beautiful DX",
-    body: "DX is developer-experience. Happy devs are productive. When we work fast, we beat the competitor.",
+    body: "DX is dev-experience. Happy devs are productive. When we work fast, users are happy.",
   },
   {
     icon: "app_shortcut",
     title: "Beautiful Product",
-    body: "Adding the two gives us a product that users love to use and devs love to work on.",
+    body: `Adding the two gives us a product that users love to use and devs love to work on.`,
   },
 ];
 
 const BeautySection = () => (
   <Grid container alignContent="center">
-    <Grid item container direction="column" md={6}>
+    <Grid item md={6}>
+      <Typography
+        size={{
+          xs: 1,
+          sm: 2,
+          md: 3,
+        }}
+        whiteSpace="pre"
+        component="p"
+        lineHeight={2}
+        align={{ xs: "center", sm: "left" }}
+      >
+        {`I specialize in beautiful\nfront-end and design systems.`}
+      </Typography>
       <Typography
         component="h2"
         size={{
@@ -92,13 +105,13 @@ const BeautySection = () => (
           md: 19,
         }}
         weight={900}
-        whiteSpace="pre"
-        align={{ xs: "center", md: "left" }}
+        whiteSpace="normal"
+        align={{ xs: "center", sm: "left" }}
       >
-        What is beautiful?
+        {`What is\nbeautiful?`}
       </Typography>
     </Grid>
-    <Grid item container direction="column" md={6}>
+    <Grid item md={6}>
       {statements.map((statement) => (
         <Statement key={statement.title} {...statement} />
       ))}
