@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../components/Button";
 import Grid from "../components/Grid";
 import Typography from "../components/Typography";
 
@@ -31,9 +32,9 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
       <Typography
         component="h3"
         size={{
-          xs: 1,
-          sm: 2,
-          md: 3,
+          xs: 0,
+          sm: 1,
+          md: 2,
         }}
         weight={700}
         color="#6d4c41"
