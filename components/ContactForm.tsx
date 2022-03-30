@@ -42,7 +42,7 @@ export const ContactForm = () => {
       }}
     >
       <Grid container spacing={3}>
-        <Grid item sm={6} md={12}>
+        <Grid item>
           <TextField
             id="name"
             value={values.name}
@@ -52,7 +52,7 @@ export const ContactForm = () => {
             disabled={loading || success}
           />
         </Grid>
-        <Grid item sm={6} md={12}>
+        <Grid item>
           <TextField
             id="email"
             type="email"
