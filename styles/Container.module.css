@@ -5,9 +5,8 @@
 }
 
 .wrapper {
-  display: flex;
   width: 100%;
-  margin: 16px;
+  margin: 32px 16px;
 }
 
 /* sm */
@@ -20,14 +19,14 @@
 @media only screen and (min-width: 905px) {
   .wrapper {
     max-width: 840px;
-    margin: unset;
+    margin: 32px 0;
   }
 }
 
 /* md */
 @media only screen and (min-width: 1240px) {
   .wrapper {
-    margin: 200px;
+    margin: 32px 200px;
   }
 }
 
@@ -35,6 +34,6 @@
 @media only screen and (min-width: 1440px) {
   .wrapper {
     max-width: 1040px;
-    margin: unset;
+    margin: 32px 0;
   }
 }
