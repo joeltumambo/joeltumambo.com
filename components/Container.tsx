@@ -5,14 +5,14 @@ interface ContainerProps {
   id?: string;
   component?: "section" | "div";
   background?: string;
-  minHeight?: string;
+  minHeight?: string
 }
 
 const Container: React.FC<ContainerProps> = ({
   id,
   component = "section",
   background,
-  minHeight = "90vh",
+  minHeight,
   children,
 }) => {
   return React.createElement(
