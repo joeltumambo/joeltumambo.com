@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import styles from "../styles/Button.module.css";
 import Typography from "./Typography";
+import Icon from "./Icon";
 
 export type ButtonComponentType = "button" | "a";
 
@@ -18,6 +19,7 @@ interface ButtonProps {
   onClick?: () => void;
   href?: string;
   target?: string;
+  color?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -31,6 +33,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   href,
   target,
+  color: colorProp = "var(--indigo-a400)",
   children,
 }) => {
   const buttonClass = classnames(
@@ -40,14 +43,23 @@ const Button: React.FC<ButtonProps> = ({
     disabled && styles.disabled,
     styles[size]
   );
+
+  const sizeMap = {
+    small: -1,
+    default: 0,
+    large: 1,
+  };
+  const backgroundColor = filled ? colorProp : "none";
+  const color = filled ? "var(--grey-50)" : colorProp;
+
   const wrappedChildren = (
     <>
       <div className={styles.container}>
         {iconLeading && (
-          <span className="material-icons-round">{iconLeading}</span>
+          <Icon name={iconLeading} size={sizeMap[size]} color={color} />
         )}
         <Typography
-          size="inherit"
+          size={sizeMap[size]}
           weight={500}
           gutter={0}
           whiteSpace="pre"
@@ -56,7 +68,7 @@ const Button: React.FC<ButtonProps> = ({
           {children}
         </Typography>
         {iconTrailing && (
-          <span className="material-icons-round">{iconTrailing}</span>
+          <Icon name={iconTrailing} size={sizeMap[size]} color={color} />
         )}
       </div>
       <span className={styles.overlay}></span>
@@ -70,6 +82,10 @@ const Button: React.FC<ButtonProps> = ({
       onClick: onClick,
       href: href,
       target: target,
+      style: {
+        "--background-color": backgroundColor,
+        "--color": color,
+      } as React.CSSProperties,
     },
     wrappedChildren
   );

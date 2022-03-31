@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../components/Button";
 import Grid from "../components/Grid";
+import Icon from "../components/Icon";
 import Typography from "../components/Typography";
 
 interface StatementProps {
@@ -14,9 +15,7 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
     <Grid item xs={false}>
       <div
         style={{
-          fontSize: "24px",
-          background: "#efebe9",
-          color: "#bcaaa4",
+          background: "var(--brown-50)",
           display: "flex",
           placeItems: "center",
           placeContent: "center",
@@ -25,7 +24,7 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
           width: "48px",
         }}
       >
-        <span className="material-icons-round">{icon}</span>
+        <Icon name={icon} color="var(--brown-200)" />
       </div>
     </Grid>
     <Grid item xs={true}>
@@ -37,7 +36,7 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
           md: 2,
         }}
         weight={700}
-        color="#6d4c41"
+        color="var(--brown-600)"
         gutter={0.5}
       >
         {title}
@@ -51,7 +50,7 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
         }}
         lineHeight={2}
         gutter={0}
-        color="#6d4c41"
+        color="var(--brown-600)"
       >
         {body}
       </Typography>
