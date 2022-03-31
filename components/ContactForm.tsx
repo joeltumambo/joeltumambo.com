@@ -77,7 +77,7 @@ export const ContactForm = () => {
         </Grid>
         <Grid item>
           <Grid container placeContent="flex-end">
-            <Grid item xs={6} sm={false}>
+            <Grid item xs={true} sm={false}>
               <Button
                 iconTrailing="launch"
                 href={`mailto:${
@@ -89,7 +89,7 @@ export const ContactForm = () => {
                 Use email app
               </Button>
             </Grid>
-            <Grid item xs={6} sm={false}>
+            <Grid item xs={true} sm={false}>
               <Button
                 filled
                 iconTrailing={"send"}
