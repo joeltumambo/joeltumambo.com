@@ -34,6 +34,11 @@ export const ContactForm = () => {
   };
 
   const isValid = Object.values(values).every((value) => value);
+  let mailToLink = `mailto:${process.env.NEXT_PUBLIC_EMAIL ?? ""}`;
+
+  if (values.message) {
+    mailToLink += `?body=${encodeURI(values.message)}`;
+  }
 
   return (
     <form
@@ -80,9 +85,7 @@ export const ContactForm = () => {
             <Grid item xs={true} sm={false}>
               <Button
                 iconTrailing="launch"
-                href={`mailto:${
-                  process.env.NEXT_PUBLIC_EMAIL ?? ""
-                }?body=${encodeURI(values.message)}`}
+                href={mailToLink}
                 target="_blank"
                 disabled={loading}
               >
