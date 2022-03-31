@@ -20,13 +20,13 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <Container background="#efebe9">
+        <Container background="var(--brown-50)">
           <HeroSection />
         </Container>
-        <Container background="#fafafa" id="learn">
+        <Container id="learn" background="var(--grey-50)">
           <BeautySection />
         </Container>
-        <Container id="contact" background="#e8eaf6">
+        <Container id="contact" background="var(--indigo-50)">
           <ContactSection />
         </Container>
       </main>
