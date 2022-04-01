@@ -1,11 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Footer from "../components/Footer";
-import ContactSection from "../page-components/ContactSection";
-import HeroSection from "../page-components/HeroSection";
-import BeautySection from "../page-components/BeautySection";
+import dynamic from "next/dynamic";
 import Container from "../components/Container";
-import { useEffect } from "react";
+
+const Hero = dynamic(() => import("../page-components/HeroSection"));
+const Beauty = dynamic(() => import("../page-components/BeautySection"));
+const Contact = dynamic(() => import("../page-components/ContactSection"));
+const Footer = dynamic(() => import("../components/Footer"));
 
 const Home: NextPage = () => (
   <>
@@ -21,13 +22,13 @@ const Home: NextPage = () => (
 
     <main>
       <Container minHeight="90vh" background="var(--brown-50)">
-        <HeroSection />
+        <Hero />
       </Container>
       <Container minHeight="90vh" id="learn" background="var(--grey-50)">
-        <BeautySection />
+        <Beauty />
       </Container>
       <Container minHeight="90vh" id="contact" background="var(--indigo-50)">
-        <ContactSection />
+        <Contact />
       </Container>
     </main>
     <Footer />
