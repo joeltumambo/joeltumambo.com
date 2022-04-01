@@ -10,39 +10,40 @@ const Beauty = dynamic(() => import("../page-components/BeautySection"));
 const Contact = dynamic(() => import("../page-components/ContactSection"));
 const Footer = dynamic(() => import("../components/Footer"));
 
-const Home: NextPage = () => {
-  const sections: {
-    id: string;
-    component: ReactElement;
-    background: string;
-    ref: React.RefObject<Element>;
-  }[] = [
-    {
-      id: "hero",
-      component: <Hero />,
-      background: "var(--brown-50)",
-      ref: React.useRef(null),
-    },
-    {
-      id: "learn",
-      component: <Beauty />,
-      background: "var(--grey-50)",
-      ref: React.useRef(null),
-    },
-    {
-      id: "contact",
-      component: <Contact />,
-      background: "var(--indigo-50)",
-      ref: React.useRef(null),
-    },
-  ];
+interface Section {
+  id: string;
+  component: ReactElement;
+  background: string;
+  ref: React.RefObject<Element>;
+  isVisible: boolean;
+}
 
-  const entries = sections.map((section) =>
-    useIntersectionObserver(section.ref, {
-      threshold: 0.1,
-      freezeOnceVisible: true,
-    })
-  );
+const createSection = (
+  id: string,
+  component: ReactElement,
+  background: string
+): Section => {
+  const ref = React.useRef(null);
+  const entry = useIntersectionObserver(ref, {
+    threshold: 0.1,
+    freezeOnceVisible: true,
+  });
+
+  return {
+    id,
+    component,
+    background,
+    ref,
+    isVisible: !!entry?.isIntersecting,
+  };
+};
+
+const Home: NextPage = () => {
+  const sections: Section[] = [
+    createSection("hero", <Hero />, "var(--brown-50)"),
+    createSection("learn", <Beauty />, "var(--grey-50)"),
+    createSection("contact", <Contact />, "var(--indigo-50)"),
+  ];
 
   return (
     <>
@@ -58,7 +59,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        {sections.map(({ id, background, component, ref }, index) => (
+        {sections.map(({ id, background, component, ref, isVisible }) => (
           <Container
             containerRef={ref}
             id={id}
@@ -66,7 +67,7 @@ const Home: NextPage = () => {
             minHeight="90vh"
             background={background}
           >
-            {!!entries[index]?.isIntersecting ? component : "loading"}
+            {isVisible ? component : "loading"}
           </Container>
         ))}
       </main>
