@@ -33,7 +33,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   href,
   target,
-  color: colorProp = "red",
+  color: colorProp = "var(--indigo-a700)",
   children,
 }) => {
   const buttonClass = classnames(
