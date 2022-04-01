@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../components/Button";
 import Grid from "../components/Grid";
 import Icon from "../components/Icon";
 import Typography from "../components/Typography";
