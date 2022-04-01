@@ -32,12 +32,12 @@ const HeroSection = () => (
       {`I help people build\nbeautiful apps with\nbeautiful code.`}
     </Typography>
     <Grid container>
-      <Grid item xs={6} sm={false}>
+      <Grid item xs={true} sm={false}>
         <Button filled iconTrailing="waving_hand" size="large" href="#contact">
           Say hello!
         </Button>
       </Grid>
-      <Grid item xs={6} sm={false}>
+      <Grid item xs={true} sm={false}>
         <Button iconTrailing="arrow_forward" size="large" href="#learn">
           Read more
         </Button>

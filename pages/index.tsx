@@ -1,38 +1,38 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Footer from "../components/Footer";
-import ContactSection from "../page-components/ContactSection";
-import HeroSection from "../page-components/HeroSection";
-import BeautySection from "../page-components/BeautySection";
+import dynamic from "next/dynamic";
 import Container from "../components/Container";
 
-const Home: NextPage = () => {
-  return (
-    <div>
-      <Head>
-        <title>Joel Tumambo</title>
-        <meta
-          name="description"
-          content="Joel Tumambo is a software engineer based in Philippines.
-          He specializes in beautiful front-end and design system"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+const Hero = dynamic(() => import("../page-components/HeroSection"));
+const Beauty = dynamic(() => import("../page-components/BeautySection"));
+const Contact = dynamic(() => import("../page-components/ContactSection"));
+const Footer = dynamic(() => import("../components/Footer"));
 
-      <main>
-        <Container background="#efebe9">
-          <HeroSection />
-        </Container>
-        <Container background="#fafafa" id="learn">
-          <BeautySection />
-        </Container>
-        <Container id="contact" background="#e8eaf6">
-          <ContactSection />
-        </Container>
-      </main>
-      <Footer />
-    </div>
-  );
-};
+const Home: NextPage = () => (
+  <>
+    <Head>
+      <title>Joel Tumambo</title>
+      <meta
+        name="description"
+        content="Joel Tumambo is a software engineer based in Philippines.
+          He specializes in beautiful front-end and design system"
+      />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+
+    <main>
+      <Container minHeight="90vh" background="var(--brown-50)">
+        <Hero />
+      </Container>
+      <Container minHeight="90vh" id="learn" background="var(--grey-50)">
+        <Beauty />
+      </Container>
+      <Container minHeight="90vh" id="contact" background="var(--indigo-50)">
+        <Contact />
+      </Container>
+    </main>
+    <Footer />
+  </>
+);
 
 export default Home;
