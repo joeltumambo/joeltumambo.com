@@ -15,7 +15,7 @@ const setHeightMeta = () => () => {
 };
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(setHeightMeta, []);
+  useEffect(() => setHeightMeta(), []);
 
   return <Component {...pageProps} />;
 }
