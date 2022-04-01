@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import emailjs from "@emailjs/browser";
 import TextField from "./TextField";
 import Button from "./Button";
 import Grid from "./Grid";
+import setMetaHeight from "../utils/setMetaHeight";
 
 export const ContactForm = () => {
   const [loading, setLoading] = useState(false);
@@ -13,9 +13,11 @@ export const ContactForm = () => {
     message: "",
   });
 
-  const send = () => {
+  useEffect(() => setMetaHeight(), []);
+
+  const send = async () => {
     setLoading(true);
-    emailjs
+    (await import("@emailjs/browser"))
       .send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? "",
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "",
