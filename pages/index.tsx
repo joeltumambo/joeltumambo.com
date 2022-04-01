@@ -32,7 +32,6 @@ const LazySection: React.FC<LazySectionProps> = ({
     <Container
       containerRef={ref}
       id={id}
-      key={id}
       minHeight="90vh"
       background={background}
     >
@@ -56,11 +55,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <LazySection
-          id="hero"
-          component={<Hero />}
-          background="var(--brown-50)"
-        />
+        <Container minHeight="90vh" background="var(--brown-50)">
+          <Hero />
+        </Container>
         <LazySection
           id="learn"
           component={<Beauty />}
