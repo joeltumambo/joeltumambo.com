@@ -23,7 +23,7 @@ const LazySection: React.FC<LazySectionProps> = ({
 }) => {
   const ref = React.useRef(null);
   const entry = useIntersectionObserver(ref, {
-    threshold: 0.1,
+    threshold: 0.15,
     freezeOnceVisible: true,
   });
   const isVisible = !!entry?.isIntersecting;
