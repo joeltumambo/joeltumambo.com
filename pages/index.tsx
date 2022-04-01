@@ -10,41 +10,38 @@ const Beauty = dynamic(() => import("../page-components/BeautySection"));
 const Contact = dynamic(() => import("../page-components/ContactSection"));
 const Footer = dynamic(() => import("../components/Footer"));
 
-interface Section {
+interface LazySectionProps {
   id: string;
   component: ReactElement;
   background: string;
-  ref: React.RefObject<Element>;
-  isVisible: boolean;
 }
 
-const createSection = (
-  id: string,
-  component: ReactElement,
-  background: string
-): Section => {
+const LazySection: React.FC<LazySectionProps> = ({
+  id,
+  component,
+  background,
+}) => {
   const ref = React.useRef(null);
   const entry = useIntersectionObserver(ref, {
     threshold: 0.1,
     freezeOnceVisible: true,
   });
+  const isVisible = !!entry?.isIntersecting;
 
-  return {
-    id,
-    component,
-    background,
-    ref,
-    isVisible: !!entry?.isIntersecting,
-  };
+  return (
+    <Container
+      containerRef={ref}
+      id={id}
+      key={id}
+      minHeight="90vh"
+      background={background}
+    >
+      {isVisible ? component : "loading"}
+    </Container>
+  );
 };
 
 const Home: NextPage = () => {
-  const sections: Section[] = [
-    createSection("hero", <Hero />, "var(--brown-50)"),
-    createSection("learn", <Beauty />, "var(--grey-50)"),
-    createSection("contact", <Contact />, "var(--indigo-50)"),
-  ];
-
   return (
     <>
       <Head>
@@ -59,17 +56,21 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        {sections.map(({ id, background, component, ref, isVisible }) => (
-          <Container
-            containerRef={ref}
-            id={id}
-            key={id}
-            minHeight="90vh"
-            background={background}
-          >
-            {isVisible ? component : "loading"}
-          </Container>
-        ))}
+        <LazySection
+          id="hero"
+          component={<Hero />}
+          background="var(--brown-50)"
+        />
+        <LazySection
+          id="learn"
+          component={<Beauty />}
+          background="var(--grey-50)"
+        />
+        <LazySection
+          id="contact"
+          component={<Contact />}
+          background="var(--indigo-50)"
+        />
       </main>
       <Footer />
     </>
