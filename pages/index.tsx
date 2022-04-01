@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef } from "react";
+import React, { ReactElement } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import dynamic from "next/dynamic";
@@ -10,32 +10,35 @@ const Beauty = dynamic(() => import("../page-components/BeautySection"));
 const Contact = dynamic(() => import("../page-components/ContactSection"));
 const Footer = dynamic(() => import("../components/Footer"));
 
-const sections: {
-  id: string;
-  component: ReactElement;
-  background: string;
-}[] = [
-  {
-    id: "hero",
-    component: <Hero />,
-    background: "var(--brown-50)",
-  },
-  {
-    id: "learn",
-    component: <Beauty />,
-    background: "var(--grey-50)",
-  },
-  {
-    id: "contact",
-    component: <Contact />,
-    background: "var(--indigo-50)",
-  },
-];
-
 const Home: NextPage = () => {
-  const refs = sections.map(() => React.useRef<HTMLElement>(null));
-  const entries = refs.map((ref) =>
-    useIntersectionObserver(ref, {
+  const sections: {
+    id: string;
+    component: ReactElement;
+    background: string;
+    ref: React.RefObject<Element>;
+  }[] = [
+    {
+      id: "hero",
+      component: <Hero />,
+      background: "var(--brown-50)",
+      ref: React.useRef(null),
+    },
+    {
+      id: "learn",
+      component: <Beauty />,
+      background: "var(--grey-50)",
+      ref: React.useRef(null),
+    },
+    {
+      id: "contact",
+      component: <Contact />,
+      background: "var(--indigo-50)",
+      ref: React.useRef(null),
+    },
+  ];
+
+  const entries = sections.map((section) =>
+    useIntersectionObserver(section.ref, {
       threshold: 0.1,
       freezeOnceVisible: true,
     })
@@ -55,9 +58,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        {sections.map(({ id, background, component }, index) => (
+        {sections.map(({ id, background, component, ref }, index) => (
           <Container
-            containerRef={refs[index]}
+            containerRef={ref}
             id={id}
             key={id}
             minHeight="90vh"

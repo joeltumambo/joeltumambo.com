@@ -3,7 +3,7 @@ import styles from "../styles/Container.module.css";
 
 interface ContainerProps {
   id?: string;
-  containerRef?: React.Ref<HTMLElement>;
+  containerRef?: React.RefObject<Element>;
   component?: "section" | "div";
   background?: string;
   minHeight?: string;
