@@ -30,7 +30,7 @@ const Custom404 = () => (
             }}
             lineHeight={2}
           >
-            {`Please check if there's a typo in the URL.`}
+            Please check if there&apos;s a typo in the URL.
           </Typography>
         </Grid>
         <Grid item>
