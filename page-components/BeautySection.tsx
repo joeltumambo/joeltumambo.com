@@ -10,7 +10,13 @@ interface StatementProps {
 }
 
 const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
-  <Grid container spacing={2}>
+  <Grid
+    container
+    spacing={{
+      xs: 2,
+      sm: 3,
+    }}
+  >
     <Grid item xs={false}>
       <div
         style={{
@@ -71,7 +77,7 @@ const statements: StatementProps[] = [
   {
     icon: "app_shortcut",
     title: "Beautiful Product",
-    body: `Adding the two gives us a product that users love to use and devs love to work on.`,
+    body: `These two will give us a product that users love to use and devs love to work on.`,
   },
 ];
 

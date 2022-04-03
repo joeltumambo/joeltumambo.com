@@ -40,17 +40,17 @@ const LazySection: React.FC<LazySectionProps> = ({
   );
 };
 
+const TITLE = "Joel Tumambo - Build Beautiful";
+const DESCRIPTION =
+  "Joel Tumambo is a software engineer based in Philippines. He specializes in beautiful front-end and design systems";
+
 const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Joel Tumambo</title>
-        <meta
-          name="description"
-          content="Joel Tumambo is a software engineer based in Philippines.
-            He specializes in beautiful front-end and design system"
-        />
-        <meta name="viewport" content="width=device-width" />
+        <title>{TITLE}</title>
+        <meta name="description" content={DESCRIPTION} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

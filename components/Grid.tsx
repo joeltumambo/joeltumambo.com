@@ -7,7 +7,14 @@ type GridFlexType = number | boolean;
 interface GridProps {
   container?: boolean;
   item?: boolean;
-  spacing?: number;
+  spacing?:
+    | number
+    | {
+        xs: number;
+        sm?: number;
+        md?: number;
+        lg?: number;
+      };
   xs?: GridFlexType;
   sm?: GridFlexType;
   md?: GridFlexType;
@@ -38,11 +45,23 @@ const Grid: React.FC<GridProps> = ({
   placeContent,
   children,
 }) => {
-  const gap = spacing * 8;
+  let xsGap;
+  let smGap;
+  let mdGap;
+  let lgGap;
   const xsFlex = flexString(xs);
   const smFlex = flexString(sm);
   const mdFlex = flexString(md);
   const lgFlex = flexString(lg);
+
+  if (typeof spacing === "object") {
+    xsGap = spacing.xs * 8;
+    smGap = spacing.sm ? spacing.sm * 8 : xsGap;
+    mdGap = spacing.md ? spacing.md * 8 : smGap;
+    lgGap = spacing.lg ? spacing.lg * 8 : mdGap;
+  } else {
+    [xsGap, smGap, mdGap, lgGap] = Array(4).fill(spacing * 8);
+  }
 
   return (
     <div
@@ -50,7 +69,10 @@ const Grid: React.FC<GridProps> = ({
       style={
         {
           ...(container && {
-            "--gap": `${gap}px`,
+            "--xs-gap": `${xsGap}px`,
+            "--sm-gap": `${smGap}px`,
+            "--md-gap": `${mdGap}px`,
+            "--lg-gap": `${lgGap}px`,
           }),
           ...(item && {
             "--xs-flex": `${xsFlex}`,
