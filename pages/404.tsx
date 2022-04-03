@@ -20,7 +20,7 @@ const Custom404 = () => (
             weight={900}
             gutter={0.5}
           >
-            Sorry, I can't find that page
+            Sorry, I can&apos;t find that page
           </Typography>
           <Typography
             size={{
