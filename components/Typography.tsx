@@ -100,10 +100,7 @@ const Typography: React.FC<TypographyProps> = ({
     mdSize = size.md ? sizeString(size.md) : smSize;
     lgSize = size.lg ? sizeString(size.lg) : mdSize;
   } else {
-    xsSize = sizeString(size);
-    smSize = xsSize;
-    mdSize = xsSize;
-    lgSize = xsSize;
+    [xsSize, smSize, mdSize, lgSize] = Array(4).fill(sizeString(size));
   }
 
   if (typeof align === "object") {
@@ -112,10 +109,7 @@ const Typography: React.FC<TypographyProps> = ({
     mdAlign = align.md ?? smAlign;
     lgAlign = align.lg ?? mdAlign;
   } else {
-    xsAlign = align;
-    smAlign = xsAlign;
-    mdAlign = xsAlign;
-    lgAlign = xsAlign;
+    [xsAlign, smAlign, mdAlign, lgAlign] = Array(4).fill(align);
   }
 
   if (typeof whiteSpace === "object") {
@@ -124,10 +118,8 @@ const Typography: React.FC<TypographyProps> = ({
     mdWhiteSpace = whiteSpace.md ?? smWhiteSpace;
     lgWhiteSpace = whiteSpace.lg ?? mdWhiteSpace;
   } else {
-    xsWhiteSpace = whiteSpace;
-    smWhiteSpace = xsWhiteSpace;
-    mdWhiteSpace = xsWhiteSpace;
-    lgWhiteSpace = xsWhiteSpace;
+    [xsWhiteSpace, smWhiteSpace, mdWhiteSpace, lgWhiteSpace] =
+      Array(4).fill(whiteSpace);
   }
 
   return React.createElement(

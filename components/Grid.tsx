@@ -60,7 +60,7 @@ const Grid: React.FC<GridProps> = ({
     mdGap = spacing.md ? spacing.md * 8 : smGap;
     lgGap = spacing.lg ? spacing.lg * 8 : mdGap;
   } else {
-    xsGap = smGap = mdGap = lgGap = spacing * 8;
+    [xsGap, smGap, mdGap, lgGap] = Array(4).fill(spacing * 8);
   }
 
   return (
