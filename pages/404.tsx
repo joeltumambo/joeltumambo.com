@@ -37,7 +37,7 @@ const Custom404 = () => (
           <Grid container>
             <Grid item xs={true} sm={false}>
               <Link href="/" passHref>
-                <Button filled size="large">
+                <Button filled size="large" iconLeading="arrow_back">
                   Go home
                 </Button>
               </Link>
