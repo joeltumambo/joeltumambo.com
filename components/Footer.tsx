@@ -10,7 +10,7 @@ const Footer = () => (
       color: "#9e9e9e",
     }}
   >
-    <Container component="div">
+    <Container component="div" minHeight="10vh">
       <Typography gutter={0} color="inherit" size={{ xs: -2, sm: -1 }}>
         © {new Date().getFullYear()} Joel Tumambo
       </Typography>
