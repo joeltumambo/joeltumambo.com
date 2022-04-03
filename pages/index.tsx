@@ -40,9 +40,9 @@ const LazySection: React.FC<LazySectionProps> = ({
   );
 };
 
-const TITLE = "Joel Tumambo - Build Beautiful";
+const TITLE = "Joel - Software Engineer for Hire";
 const DESCRIPTION =
-  "Joel Tumambo is a software engineer based in Philippines. He specializes in beautiful front-end and design systems";
+  "Joel Tumambo is a software engineer from Philippines. He specializes in beautiful front-end and design systems.";
 
 const Home: NextPage = () => {
   return (
