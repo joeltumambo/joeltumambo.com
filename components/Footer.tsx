@@ -1,21 +1,12 @@
 import Typography from "./Typography";
-import styles from "../styles/Home.module.css";
 import Container from "./Container";
-import Grid from "./Grid";
 
 const Footer = () => (
-  <footer
-    style={{
-      background: "#212121",
-      color: "#9e9e9e",
-    }}
-  >
-    <Container component="div" minHeight="10vh">
-      <Typography gutter={0} color="inherit" size={{ xs: -2, sm: -1 }}>
-        © {new Date().getFullYear()} Joel Tumambo
-      </Typography>
-    </Container>
-  </footer>
+  <Container component="footer" minHeight="10vh" background="var(--grey-900)">
+    <Typography gutter={0} color="var(--grey-500)" size={{ xs: -2, sm: -1 }}>
+      © {new Date().getFullYear()} Joel Tumambo
+    </Typography>
+  </Container>
 );
 
 export default Footer;
