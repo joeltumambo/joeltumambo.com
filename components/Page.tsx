@@ -6,7 +6,7 @@ interface PageProps {
   description?: string;
 }
 
-const TITLE = "Joel - Software Engineer for Hire";
+const TITLE = "Software Engineer for Hire | Joel Tumambo";
 const DESCRIPTION =
   "Joel Tumambo is a software engineer from Philippines. He specializes in beautiful front-end and design systems.";
 
