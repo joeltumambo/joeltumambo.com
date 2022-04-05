@@ -41,7 +41,7 @@ const LazySection: React.FC<LazySectionProps> = ({
 
 const Home: NextPage = () => {
   return (
-    <Page>
+    <Page title="Software Engineer for Hire">
       <Container minHeight="90vh" background="var(--brown-50)">
         <Hero />
       </Container>

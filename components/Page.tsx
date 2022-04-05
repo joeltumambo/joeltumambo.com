@@ -9,15 +9,18 @@ interface PageProps {
   description?: string;
 }
 
-const TITLE = "Software Engineer for Hire | Joel Tumambo";
+const DEFAULT_TITLE = "Joel Tumambo";
 const DESCRIPTION =
   "Joel Tumambo is a software engineer from Philippines. He specializes in beautiful front-end and design systems.";
 
 const Page: React.FC<PageProps> = ({
-  title = TITLE,
+  title: titleProp,
   description = DESCRIPTION,
   children,
 }) => {
+  const title = titleProp
+    ? [titleProp, DEFAULT_TITLE].join(" | ")
+    : DEFAULT_TITLE;
   const [viewportMeta, setViewportMeta] = useState(DEFAULT_VIEWPORT_META);
 
   useEffectOnce(() => {
