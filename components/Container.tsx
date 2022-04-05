@@ -4,7 +4,7 @@ import styles from "../styles/Container.module.css";
 interface ContainerProps {
   id?: string;
   containerRef?: React.RefObject<Element>;
-  component?: "section" | "div";
+  component?: "section" | "div" | "footer";
   background?: string;
   minHeight?: string;
 }

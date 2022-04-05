@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TextField from "./TextField";
 import Button from "./Button";
 import Grid from "./Grid";
-import setMetaHeight from "../utils/setMetaHeight";
 
 export const ContactForm = () => {
   const [loading, setLoading] = useState(false);
@@ -12,8 +11,6 @@ export const ContactForm = () => {
     email: "",
     message: "",
   });
-
-  useEffect(() => setMetaHeight(), []);
 
   const send = async () => {
     setLoading(true);
@@ -44,6 +41,7 @@ export const ContactForm = () => {
 
   return (
     <form
+      noValidate
       onSubmit={(e) => {
         e.preventDefault();
       }}
