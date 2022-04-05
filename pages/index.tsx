@@ -8,7 +8,6 @@ import Page from "../components/Page";
 const Hero = dynamic(() => import("../page-components/HeroSection"));
 const Beauty = dynamic(() => import("../page-components/BeautySection"));
 const Contact = dynamic(() => import("../page-components/ContactSection"));
-const Footer = dynamic(() => import("../components/Footer"));
 
 interface LazySectionProps {
   id: string;
