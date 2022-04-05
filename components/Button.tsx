@@ -83,6 +83,7 @@ const Button: React.FC<ButtonProps> = ({
         style={buttonStyle}
         href={link.href as string}
         target="_blank"
+        rel="noreferrer"
       >
         {wrappedChildren}
       </a>
