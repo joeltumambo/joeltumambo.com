@@ -41,7 +41,9 @@ export const ContactForm = () => {
     mailToLink += `?body=${encodeURI(values.message)}`;
   }
 
-  useEffectOnce(setMetaViewport);
+  useEffectOnce(() => {
+    setMetaViewport();
+  });
 
   return (
     <form
