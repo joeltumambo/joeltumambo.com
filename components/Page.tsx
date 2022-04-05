@@ -1,7 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
-import { useEffectOnce } from "usehooks-ts";
-import getViewportMeta, { DEFAULT_VIEWPORT_META } from "../getViewportMeta";
+import { useEffect } from "react";
 import Footer from "./Footer";
 
 interface PageProps {
@@ -9,28 +7,28 @@ interface PageProps {
   description?: string;
 }
 
-const TITLE = "Software Engineer for Hire | Joel Tumambo";
+const DEFAULT_TITLE = "Joel Tumambo";
 const DESCRIPTION =
   "Joel Tumambo is a software engineer from Philippines. He specializes in beautiful front-end and design systems.";
 
 const Page: React.FC<PageProps> = ({
-  title = TITLE,
+  title: titleProp,
   description = DESCRIPTION,
   children,
 }) => {
-  const [viewportMeta, setViewportMeta] = useState(DEFAULT_VIEWPORT_META);
-
-  useEffectOnce(() => {
-    const newViewportMeta = getViewportMeta();
-    setViewportMeta(newViewportMeta);
-  });
+  const title = titleProp
+    ? [titleProp, DEFAULT_TITLE].join(" | ")
+    : DEFAULT_TITLE;
 
   return (
     <>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta name="viewport" content={viewportMeta} />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

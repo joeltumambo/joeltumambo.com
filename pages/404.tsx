@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Button from "../components/Button";
 import Container from "../components/Container";
 import Grid from "../components/Grid";
@@ -6,7 +5,7 @@ import Page from "../components/Page";
 import Typography from "../components/Typography";
 
 const Custom404 = () => (
-  <Page title="Joel - Page Not Found">
+  <Page title="Page Not Found">
     <Container minHeight="90vh">
       <Grid container>
         <Grid item>
