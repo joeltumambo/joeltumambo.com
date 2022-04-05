@@ -1,15 +1,16 @@
 import React from "react";
+import Link, { LinkProps } from "next/link";
 import classnames from "classnames";
 import styles from "../styles/Button.module.css";
 import Typography from "./Typography";
 import Icon from "./Icon";
 
-export type ButtonComponentType = "button" | "a";
-
 export type ButtonSizeType = "small" | "default" | "large";
+export type ButtonLinkType = LinkProps & {
+  external?: boolean;
+};
 
 interface ButtonProps {
-  component?: ButtonComponentType;
   size?: ButtonSizeType;
   filled?: boolean;
   brightness?: "dark" | "light";
@@ -17,13 +18,11 @@ interface ButtonProps {
   iconTrailing?: string;
   disabled?: boolean;
   onClick?: () => void;
-  href?: string;
-  target?: string;
   color?: string;
+  link?: ButtonLinkType;
 }
 
 const Button: React.FC<ButtonProps> = ({
-  component = "button",
   filled = false,
   size = "default",
   brightness = "light",
@@ -31,9 +30,8 @@ const Button: React.FC<ButtonProps> = ({
   iconTrailing,
   disabled,
   onClick,
-  href,
-  target,
   color: colorProp = "var(--indigo-a700)",
+  link,
   children,
 }) => {
   const buttonClass = classnames(
@@ -43,7 +41,6 @@ const Button: React.FC<ButtonProps> = ({
     disabled && styles.disabled,
     styles[size]
   );
-
   const sizeMap = {
     small: -1,
     default: 0,
@@ -51,6 +48,10 @@ const Button: React.FC<ButtonProps> = ({
   };
   const backgroundColor = filled ? colorProp : "none";
   const color = filled ? "var(--grey-50)" : colorProp;
+  const buttonStyle = {
+    "--background-color": backgroundColor,
+    "--color": color,
+  } as React.CSSProperties;
 
   const wrappedChildren = (
     <>
@@ -75,19 +76,27 @@ const Button: React.FC<ButtonProps> = ({
     </>
   );
 
-  return React.createElement(
-    href ? "a" : component,
-    {
-      className: buttonClass,
-      onClick: onClick,
-      href: href,
-      target: target,
-      style: {
-        "--background-color": backgroundColor,
-        "--color": color,
-      } as React.CSSProperties,
-    },
-    wrappedChildren
+  return link ? (
+    link.external ? (
+      <a
+        className={buttonClass}
+        style={buttonStyle}
+        href={link.href as string}
+        target="_blank"
+      >
+        {wrappedChildren}
+      </a>
+    ) : (
+      <Link {...link} passHref>
+        <a className={buttonClass} style={buttonStyle}>
+          {wrappedChildren}
+        </a>
+      </Link>
+    )
+  ) : (
+    <button className={buttonClass} style={buttonStyle} onClick={onClick}>
+      {wrappedChildren}
+    </button>
   );
 };
 

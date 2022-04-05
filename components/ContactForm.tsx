@@ -85,9 +85,11 @@ export const ContactForm = () => {
             <Grid item xs={true} sm={false}>
               <Button
                 iconTrailing="launch"
-                href={mailToLink}
-                target="_blank"
                 disabled={loading}
+                link={{
+                  href: mailToLink,
+                  external: true,
+                }}
               >
                 Use email app
               </Button>

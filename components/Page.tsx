@@ -23,6 +23,7 @@ const Page: React.FC<PageProps> = ({
   useEffectOnce(() => {
     const newViewportMeta = getViewportMeta();
     setViewportMeta(newViewportMeta);
+    console.log("set meta")
   });
 
   return (

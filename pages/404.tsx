@@ -36,16 +36,26 @@ const Custom404 = () => (
         <Grid item>
           <Grid container>
             <Grid item xs={true} sm={false}>
-              <Link href="/" passHref>
-                <Button filled size="large" iconLeading="arrow_back">
-                  Go home
-                </Button>
-              </Link>
+              <Button
+                filled
+                size="large"
+                iconLeading="arrow_back"
+                link={{
+                  href: "/",
+                }}
+              >
+                Go home
+              </Button>
             </Grid>
             <Grid item xs={true} sm={false}>
-              <Link href="/#contact" passHref>
-                <Button size="large">or, tell me about it.</Button>
-              </Link>
+              <Button
+                size="large"
+                link={{
+                  href: "/#contact",
+                }}
+              >
+                or, tell me about it.
+              </Button>
             </Grid>
           </Grid>
         </Grid>
