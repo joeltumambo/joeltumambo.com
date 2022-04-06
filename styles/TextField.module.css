@@ -47,7 +47,10 @@
 }
 
 .container input::placeholder,
-.container textarea::placeholder,
+.container textarea::placeholder {
+  color: var(--brown-200);
+}
+
 .container span:not(.error) {
   color: var(--brown-400);
 }
