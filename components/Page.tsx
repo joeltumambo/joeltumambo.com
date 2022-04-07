@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Footer from "./Footer";
+import Header from "./Header";
 
 interface PageProps {
   title?: string;
@@ -24,14 +25,15 @@ const Page: React.FC<PageProps> = ({
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:image" content="https://www.joeltumambo.com/logo.png" />
+        <meta
+          property="og:image"
+          content="https://www.joeltumambo.com/logo.png"
+        />
       </Head>
 
+      <Header />
       <main>{children}</main>
       <Footer />
     </>

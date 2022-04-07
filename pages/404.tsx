@@ -6,7 +6,12 @@ import Typography from "../components/Typography";
 
 const Custom404 = () => (
   <Page title="Page Not Found">
-    <Container minHeight="90vh">
+    <Container
+      minHeight="80vh"
+      style={{
+        paddingBottom: "10vh",
+      }}
+    >
       <Grid container>
         <Grid item>
           <Typography
