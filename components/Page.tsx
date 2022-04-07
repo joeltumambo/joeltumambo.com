@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Footer from "./Footer";
+import Header from "./Header";
 
 interface PageProps {
   title?: string;
@@ -32,6 +33,7 @@ const Page: React.FC<PageProps> = ({
         />
       </Head>
 
+      <Header />
       <main>{children}</main>
       <Footer />
     </>

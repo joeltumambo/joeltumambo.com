@@ -4,9 +4,10 @@ import styles from "../styles/Container.module.css";
 interface ContainerProps {
   id?: string;
   containerRef?: React.RefObject<Element>;
-  component?: "section" | "div" | "footer";
+  component?: "section" | "div" | "footer" | "header";
   background?: string;
   minHeight?: string;
+  style?: React.CSSProperties;
 }
 
 const Container: React.FC<ContainerProps> = ({
@@ -15,6 +16,7 @@ const Container: React.FC<ContainerProps> = ({
   component = "section",
   background,
   minHeight,
+  style,
   children,
 }) =>
   React.createElement(
@@ -26,6 +28,7 @@ const Container: React.FC<ContainerProps> = ({
       style: {
         background: background,
         minHeight: minHeight,
+        ...style,
       } as React.CSSProperties,
     },
     <div className={styles.wrapper}>{children}</div>
