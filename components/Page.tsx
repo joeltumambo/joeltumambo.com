@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { useEffect } from "react";
 import Footer from "./Footer";
 
 interface PageProps {
@@ -27,9 +26,10 @@ const Page: React.FC<PageProps> = ({
         <meta name="description" content={description} />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1.0"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
         />
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:image" content="https://www.joeltumambo.com/logo.png" />
       </Head>
 
       <main>{children}</main>
