@@ -31,6 +31,7 @@ const Page: React.FC<PageProps> = ({
           property="og:image"
           content="https://www.joeltumambo.com/logo.png"
         />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
       <Header />
