@@ -77,7 +77,7 @@ const statements: StatementProps[] = [
   {
     icon: "app_shortcut",
     title: "Beautiful Product",
-    body: `Good UX and DX results to a product that users love to use and devs love to work on.`,
+    body: `Good UX + DX = a product that users love to use and devs love to work on.`,
   },
 ];
 
