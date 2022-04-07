@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useEventListener } from "usehooks-ts";
 import Button from "./Button";
 import Container from "./Container";
