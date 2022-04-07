@@ -26,11 +26,14 @@ const Page: React.FC<PageProps> = ({
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
         <meta
           property="og:image"
           content="https://www.joeltumambo.com/logo.png"
         />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
