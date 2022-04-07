@@ -5,7 +5,6 @@ import Container from "./Container";
 import Icon from "./Icon";
 
 const Header = () => {
-  const [top, setTop] = useState(0);
   const [opacity, setOpacity] = useState(0);
 
   const onScroll = () => {
@@ -15,7 +14,6 @@ const Header = () => {
       const scrollTop = element.scrollTop;
       const height = Math.min(element.scrollHeight * 0.1, 52);
 
-      setTop(Math.min(1 - (height - scrollTop) / height, 1));
       setOpacity(Math.min(1 - (height - scrollTop) / height, 1));
     }
   };
