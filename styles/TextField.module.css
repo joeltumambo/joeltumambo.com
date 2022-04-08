@@ -42,7 +42,7 @@
 
 .container input:focus-within,
 .container textarea:focus-within {
-  border: solid 1px var(--indigo-400);
+  border: solid 1px var(--indigo-a200);
   box-shadow: 0 0 0 2px var(--indigo-100);
 }
 
