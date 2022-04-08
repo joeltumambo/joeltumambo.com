@@ -1,4 +1,3 @@
-import { LinkProps } from "next/link";
 import Button, {
   ButtonLinkType,
   ButtonSizeType,
