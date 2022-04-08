@@ -2,8 +2,6 @@ import { useState } from "react";
 import TextField from "./TextField";
 import Button from "./Button";
 import Grid from "./Grid";
-import setMetaViewport from "../utils/setMetaViewport";
-import { useEffectOnce } from "usehooks-ts";
 
 export const ContactForm = () => {
   const [loading, setLoading] = useState(false);
@@ -40,10 +38,6 @@ export const ContactForm = () => {
   if (values.message) {
     mailToLink += `?body=${encodeURI(values.message)}`;
   }
-
-  useEffectOnce(() => {
-    setMetaViewport();
-  });
 
   return (
     <form

@@ -1,31 +1,28 @@
 import Head from "next/head";
+import { TITLE, DESCRIPTION, INITIAL_VIEWPORT_META } from "../utils/contants";
 import Footer from "./Footer";
 import Header from "./Header";
 
 interface PageProps {
   title?: string;
   description?: string;
+  viewport?: string
 }
-
-const DEFAULT_TITLE = "Joel Tumambo";
-const DESCRIPTION =
-  "Joel Tumambo is a software engineer from Philippines. He specializes in beautiful front-end and design systems.";
 
 const Page: React.FC<PageProps> = ({
   title: titleProp,
   description = DESCRIPTION,
+  viewport = INITIAL_VIEWPORT_META,
   children,
 }) => {
-  const title = titleProp
-    ? [titleProp, DEFAULT_TITLE].join(" | ")
-    : DEFAULT_TITLE;
+  const title = titleProp ? [titleProp, TITLE].join(" | ") : TITLE;
 
   return (
     <>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content={viewport} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta
