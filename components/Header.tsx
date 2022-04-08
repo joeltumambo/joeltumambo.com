@@ -17,7 +17,7 @@ const Header = () => {
 
     setLastScrollTop(scrollTop);
 
-    if (scrollDelta < 1) {
+    if (scrollDelta < 0) {
       setTop(Math.max(top + scrollDelta, height * -1));
     } else {
       setTop(Math.min(top + scrollDelta, 0));
