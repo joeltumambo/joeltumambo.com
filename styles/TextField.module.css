@@ -52,7 +52,7 @@
 }
 
 .container span:not(.error) {
-  color: var(--brown-400);
+  color: var(--brown-500);
 }
 
 .error {
