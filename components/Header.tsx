@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useEventListener } from "usehooks-ts";
 import Button from "./Button";
 import Container from "./Container";
@@ -6,16 +6,23 @@ import Icon from "./Icon";
 
 const Header = () => {
   const [opacity, setOpacity] = useState(0);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [top, setTop] = useState(0);
 
   const onScroll = () => {
-    const element = document.scrollingElement;
+    const element = document.documentElement;
+    const scrollTop = element.scrollTop;
+    const height = Math.max(element.clientHeight * 0.1, 52);
+    const scrollDelta = lastScrollTop - scrollTop;
 
-    if (element) {
-      const scrollTop = element.scrollTop;
-      const height = Math.min(element.scrollHeight * 0.1, 52);
+    setLastScrollTop(scrollTop);
 
-      setOpacity(Math.min(1 - (height - scrollTop) / height, 1));
+    if (scrollDelta < 1) {
+      setTop(Math.max(top + scrollDelta, height * -1));
+    } else {
+      setTop(Math.min(top + scrollDelta, 0));
     }
+    setOpacity(Math.min(1 - (height - scrollTop) / height, 1));
   };
 
   useEventListener("scroll", onScroll);
@@ -30,7 +37,7 @@ const Header = () => {
         zIndex: 100,
         height: "10vh",
         position: "sticky",
-        top: 0,
+        top: `${top}px`,
         boxShadow: `0 1px 0 0 rgba(0, 0, 0, ${opacity / 10})`,
         backdropFilter: "blur(4px)",
       }}
