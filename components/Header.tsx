@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useEventListener, useTimeout } from "usehooks-ts";
+import { useEventListener } from "usehooks-ts";
 import evenify from "../utils/evenify";
 import Button from "./Button";
 import Container from "./Container";
@@ -12,7 +12,6 @@ const Header = () => {
     value: 0,
     unit: "",
   });
-  // let scrollTimer: number | undefined;
 
   const onScroll = () => {
     const element = document.documentElement;
@@ -41,7 +40,7 @@ const Header = () => {
     <Container
       component="header"
       minHeight="52px"
-      background={`rgba(250, 250, 250, ${opacity - 0.2})`}
+      background={`rgba(250, 250, 250, ${opacity - 0.1})`}
       style={{
         overflow: "hidden",
         zIndex: 100,
