@@ -9,7 +9,6 @@ const Header = () => {
   const [opacity, setOpacity] = useState(0);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [top, setTop] = useState(0);
-  const [text, setText] = useState("");
 
   const onScroll = () => {
     const element = document.documentElement;
