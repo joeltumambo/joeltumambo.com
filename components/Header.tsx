@@ -40,6 +40,7 @@ const Header = () => {
         top: `${top}px`,
         boxShadow: `0 1px 0 0 rgba(0, 0, 0, ${opacity / 10})`,
         backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
       }}
     >
       <div
