@@ -93,6 +93,14 @@
   background: none;
 }
 
+.button:not(.filled):focus > .overlay {
+  opacity: 0.1;
+}
+
+.filled:focus > .overlay {
+  background: none;
+}
+
 @media (hover: hover) {
   .button:not(.filled):hover > .overlay {
     opacity: 0.1;
