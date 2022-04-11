@@ -66,17 +66,17 @@ const Statement: React.FC<StatementProps> = ({ icon, title, body }) => (
 const statements: StatementProps[] = [
   {
     icon: "sentiment_very_satisfied",
-    title: "Beautiful UX",
-    body: "User-experience makes or breaks an app. We want our users to stay and return.",
+    title: "UX",
+    body: "User experience makes or breaks an app. We want users to stay and return.",
   },
   {
     icon: "code",
-    title: "Beautiful DX",
-    body: "DX is dev-experience. Happy devs are productive. When we work fast, we beat the competitor.",
+    title: "DX",
+    body: "DX is developer experience. Happy developers produce quality work.",
   },
   {
     icon: "app_shortcut",
-    title: "Beautiful Product",
+    title: "Product",
     body: `Great UX + DX = a product that users love to use and devs love to work on.`,
   },
 ];
