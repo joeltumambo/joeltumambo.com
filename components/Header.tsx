@@ -58,7 +58,7 @@ const Header = () => {
           placeContent: "space-between",
         }}
       >
-        <Icon name="logo" size={10} color="var(--indigo-a400)" />
+        <Icon name="logo" size={10} color="var(--indigo-a700)" />
         <nav>
           <Button
             size="small"
