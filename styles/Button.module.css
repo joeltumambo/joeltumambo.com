@@ -40,7 +40,8 @@
 
 .button.filled {
   border: solid 1px rgba(0, 0, 0, 0.05);
-  background: var(--background-color);
+  background: var(--color);
+  color: var(--grey-50);
 }
 
 .button.filled:not(.disabled) {
@@ -64,7 +65,7 @@
   z-index: 0;
   position: absolute;
   inset: 0;
-  background: var(--background-color);
+  background: var(--color);
   opacity: 0;
 }
 

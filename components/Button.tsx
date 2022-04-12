@@ -30,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({
   iconTrailing,
   disabled,
   onClick,
-  color: colorProp = "var(--indigo-a700)",
+  color = "var(--indigo-a700)",
   link,
   children,
 }) => {
@@ -46,10 +46,8 @@ const Button: React.FC<ButtonProps> = ({
     default: 0,
     large: 1,
   };
-  const backgroundColor = colorProp;
-  const color = filled ? "var(--grey-50)" : colorProp;
+  const iconColor = filled ? "var(--grey-50)" : color;
   const buttonStyle = {
-    "--background-color": backgroundColor,
     "--color": color,
   } as React.CSSProperties;
 
@@ -57,7 +55,7 @@ const Button: React.FC<ButtonProps> = ({
     <>
       <div className={styles.container}>
         {iconLeading && (
-          <Icon name={iconLeading} size={sizeMap[size]} color={color} />
+          <Icon name={iconLeading} size={sizeMap[size]} color={iconColor} />
         )}
         <Typography
           size={sizeMap[size]}
@@ -69,7 +67,11 @@ const Button: React.FC<ButtonProps> = ({
           {children}
         </Typography>
         {iconTrailing && (
-          <Icon name={iconTrailing} size={sizeMap[size]} color={color} />
+          <Icon
+            name={iconTrailing}
+            size={sizeMap[size]}
+            color={iconColor}
+          />
         )}
       </div>
       <span className={styles.overlay}></span>
