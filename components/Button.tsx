@@ -46,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
     default: 0,
     large: 1,
   };
-  const backgroundColor = filled ? colorProp : "none";
+  const backgroundColor = colorProp;
   const color = filled ? "var(--grey-50)" : colorProp;
   const buttonStyle = {
     "--background-color": backgroundColor,
