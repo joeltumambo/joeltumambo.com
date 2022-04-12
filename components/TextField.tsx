@@ -32,7 +32,7 @@ const TextField: React.FC<TextFieldProps> = ({
       id={id}
       placeholder={placeholder}
       value={value}
-      onChange={onChange}
+      onChange={disabled ? undefined : onChange}
       type={type}
     />
   );
@@ -42,7 +42,7 @@ const TextField: React.FC<TextFieldProps> = ({
       placeholder={placeholder}
       rows={2}
       value={value}
-      onChange={onChange}
+      onChange={disabled ? undefined : onChange}
     />
   );
 

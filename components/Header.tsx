@@ -59,7 +59,7 @@ const Header = () => {
         }}
       >
         <Icon name="logo" size={10} color="var(--indigo-a400)" />
-        <div>
+        <nav>
           <Button
             size="small"
             filled
@@ -69,7 +69,7 @@ const Header = () => {
           >
             Say hello!
           </Button>
-        </div>
+        </nav>
       </div>
     </Container>
   );

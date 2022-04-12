@@ -33,6 +33,7 @@ export const ContactForm = () => {
   };
 
   const isValid = Object.values(values).every((value) => value);
+  const isDisabled = !isValid || loading || success; 
   let mailToLink = `mailto:${process.env.NEXT_PUBLIC_EMAIL ?? ""}`;
 
   if (values.message) {
@@ -98,8 +99,8 @@ export const ContactForm = () => {
               <Button
                 filled
                 iconTrailing={"send"}
-                onClick={send}
-                disabled={!isValid || loading || success}
+                onClick={isDisabled ? undefined : send}
+                disabled={isDisabled}
               >
                 {loading ? "Sending" : success ? "Sent!" : "Send"}
               </Button>
