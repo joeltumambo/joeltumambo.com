@@ -27,6 +27,7 @@
   --grey-800: #424242;
   --grey-900: #212121;
   --red-700: #c62828;
+  --easing-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 html,
