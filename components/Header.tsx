@@ -5,26 +5,53 @@ import Button from "./Button";
 import Container from "./Container";
 import Icon from "./Icon";
 
+interface TopProps {
+  value: number;
+  unit: "px" | "vh";
+}
+
 const Header = () => {
   const [opacity, setOpacity] = useState(0);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [top, setTop] = useState({
+  const heightMap = {
+    px: 52,
+    vh: 10,
+  };
+  const [top, setTop] = useState<TopProps>({
     value: 0,
-    unit: "",
+    unit: "px",
   });
+  const [animate, setAnimate] = useState(false);
+
+  const onScrollStop = () => {
+    setAnimate(true);
+    if (top.value * -1 >= heightMap[top.unit] / 2) {
+      setTop({
+        value: heightMap[top.unit] * -1,
+        unit: top.unit,
+      });
+    } else {
+      setTop({
+        value: 0,
+        unit: top.unit,
+      });
+    }
+  };
+  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
 
   const onScroll = () => {
     const element = document.documentElement;
     const scrollTop = element.scrollTop;
     const evenRelativeHeight = evenify(Math.round(element.clientHeight * 0.1));
-    const height = Math.max(evenRelativeHeight, 52);
-    const maxTop = height === 52 ? -52 : -10;
-    const deltaFactor = height === 52 ? 1 : 0.1;
+    const height = Math.max(evenRelativeHeight, heightMap.px);
+    const isPx = height === heightMap.px;
+    const unit = isPx ? "px" : "vh";
+    const maxTop = heightMap[unit] * -1;
+    const deltaFactor = height === heightMap.px ? 1 : 0.1;
     const scrollDelta = (lastScrollTop - scrollTop) * deltaFactor;
     const newTop = top.value + scrollDelta;
     const isUp = scrollDelta < 0;
     const value = isUp ? Math.max(newTop, maxTop) : Math.min(newTop, 0);
-    const unit = height === 52 ? "px" : "vh";
 
     setLastScrollTop(scrollTop);
     setTop({
@@ -32,6 +59,13 @@ const Header = () => {
       unit: unit,
     });
     setOpacity(Math.min(1 - (height - scrollTop) / height, 1));
+    setAnimate(false);
+    if (timer) {
+      clearTimeout(timer);
+    }
+    if (lastScrollTop > height) {
+      setTimer(setTimeout(onScrollStop, 100));
+    }
   };
 
   useEventListener("scroll", onScroll);
@@ -50,6 +84,9 @@ const Header = () => {
         boxShadow: `0 1px 0 0 rgba(0, 0, 0, ${opacity / 10})`,
         backdropFilter: "blur(4px)",
         WebkitBackdropFilter: "blur(4px)",
+        ...(animate && {
+          transition: "top 250ms ease-in-out",
+        }),
       }}
     >
       <div
