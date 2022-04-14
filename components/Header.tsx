@@ -22,7 +22,8 @@ const Header = () => {
     unit: "px",
   });
   const [animate, setAnimate] = useState(false);
-
+  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
+ 
   const onScrollStop = () => {
     setAnimate(true);
     if (top.value * -1 >= heightMap[top.unit] / 2) {
@@ -37,8 +38,7 @@ const Header = () => {
       });
     }
   };
-  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
-
+  
   const onScroll = () => {
     const element = document.documentElement;
     const scrollTop = element.scrollTop;
@@ -85,7 +85,7 @@ const Header = () => {
         backdropFilter: "blur(4px)",
         WebkitBackdropFilter: "blur(4px)",
         ...(animate && {
-          transition: "top 250ms ease-in-out",
+          transition: "top 250ms var(--easing-standard)",
         }),
       }}
     >
