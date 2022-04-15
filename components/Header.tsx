@@ -1,6 +1,6 @@
 import classNames from "classnames";
-import React, { useState } from "react";
-import { useEventListener } from "usehooks-ts";
+import React, { useEffect, useState } from "react";
+import { useEventListener, useWindowSize } from "usehooks-ts";
 import styles from "../styles/Header.module.css";
 import evenify from "../utils/evenify";
 import Button from "./Button";
@@ -13,18 +13,24 @@ interface TopProps {
 }
 
 const Header = () => {
+  const [height, setHeight] = useState(0);
   const [opacity, setOpacity] = useState(0);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  const heightMap = {
-    px: 52,
-    vh: 10,
-  };
   const [top, setTop] = useState<TopProps>({
     value: 0,
     unit: "px",
   });
   const [animated, setAnimated] = useState(false);
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
+  const { height: windowHeight } = useWindowSize();
+  const heightMap = {
+    px: 52,
+    vh: 10,
+  };
+  const isPx = height === heightMap.px;
+  const unit = isPx ? "px" : "vh";
+  const maxTop = heightMap[unit] * -1;
+  const deltaFactor = isPx ? 1 : 0.1;
 
   const onScrollStop = () => {
     setAnimated(true);
@@ -44,24 +50,19 @@ const Header = () => {
   const onScroll = () => {
     const element = document.documentElement;
     const scrollTop = element.scrollTop;
-    const evenRelativeHeight = evenify(Math.round(element.clientHeight * 0.1));
-    const height = Math.max(evenRelativeHeight, heightMap.px);
-    const isPx = height === heightMap.px;
-    const unit = isPx ? "px" : "vh";
-    const maxTop = heightMap[unit] * -1;
-    const deltaFactor = height === heightMap.px ? 1 : 0.1;
     const scrollDelta = (lastScrollTop - scrollTop) * deltaFactor;
+    const newOpacity = Math.min(1 - (height - scrollTop) / height, 1);
     const newTop = top.value + scrollDelta;
     const isUp = scrollDelta < 0;
     const value = isUp ? Math.max(newTop, maxTop) : Math.min(newTop, 0);
 
-    setLastScrollTop(scrollTop);
     setTop({
       value: value,
       unit: unit,
     });
-    setOpacity(Math.min(1 - (height - scrollTop) / height, 1));
+    setOpacity(newOpacity);
     setAnimated(false);
+    setLastScrollTop(scrollTop);
 
     if (lastScrollTop > height) {
       if (timer) {
@@ -72,6 +73,13 @@ const Header = () => {
   };
 
   useEventListener("scroll", onScroll);
+
+  useEffect(() => {
+    const evenRelativeHeight = evenify(Math.ceil(windowHeight * 0.1));
+    const height = Math.max(evenRelativeHeight, heightMap.px);
+
+    setHeight(height);
+  }, [windowHeight]);
 
   return (
     <Container
