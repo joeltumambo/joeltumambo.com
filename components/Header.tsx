@@ -7,64 +7,41 @@ import Button from "./Button";
 import Container from "./Container";
 import Icon from "./Icon";
 
-interface TopProps {
-  value: number;
-  unit: "px" | "vh";
-}
-
 const Header = () => {
+  const { height: windowHeight } = useWindowSize();
   const [height, setHeight] = useState(0);
+  const [touching, setTouching] = useState(false);
   const [opacity, setOpacity] = useState(0);
   const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [top, setTop] = useState<TopProps>({
-    value: 0,
-    unit: "px",
-  });
+  const [top, setTop] = useState(0);
   const [animated, setAnimated] = useState(false);
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
-  const { height: windowHeight } = useWindowSize();
-  const heightMap = {
-    px: 52,
-    vh: 10,
-  };
-  const isPx = height === heightMap.px;
-  const unit = isPx ? "px" : "vh";
-  const maxTop = heightMap[unit] * -1;
-  const deltaFactor = isPx ? 1 : 0.1;
+  const maxTop = height * -1;
 
   const onScrollStop = () => {
     setAnimated(true);
-    if (top.value * -1 >= heightMap[top.unit] / 2) {
-      setTop({
-        value: heightMap[top.unit] * -1,
-        unit: top.unit,
-      });
+    if (top * -1 >= height / 2) {
+      setTop(maxTop);
     } else {
-      setTop({
-        value: 0,
-        unit: top.unit,
-      });
+      setTop(0);
     }
   };
 
   const onScroll = () => {
     const element = document.documentElement;
     const scrollTop = element.scrollTop;
-    const scrollDelta = (lastScrollTop - scrollTop) * deltaFactor;
+    const scrollDelta = lastScrollTop - scrollTop;
     const newOpacity = Math.min(1 - (height - scrollTop) / height, 1);
-    const newTop = top.value + scrollDelta;
+    const newTop = top + scrollDelta;
     const isUp = scrollDelta < 0;
     const value = isUp ? Math.max(newTop, maxTop) : Math.min(newTop, 0);
 
-    setTop({
-      value: value,
-      unit: unit,
-    });
+    setTop(value);
     setOpacity(newOpacity);
     setAnimated(false);
     setLastScrollTop(scrollTop);
 
-    if (lastScrollTop > height) {
+    if (lastScrollTop > height && !touching) {
       if (timer) {
         clearTimeout(timer);
       }
@@ -72,14 +49,25 @@ const Header = () => {
     }
   };
 
-  useEventListener("scroll", onScroll);
+  useEffect(() => {
+    const relativeHeight = evenify(Math.round(windowHeight * 0.1));
+    const newHeight = Math.max(relativeHeight, 52);
+    setHeight(newHeight);
+  }, [windowHeight]);
 
   useEffect(() => {
-    const evenRelativeHeight = evenify(Math.ceil(windowHeight * 0.1));
-    const height = Math.max(evenRelativeHeight, heightMap.px);
+    if (!touching) {
+      onScrollStop();
+    }
+  }, [touching]);
 
-    setHeight(height);
-  }, [windowHeight]);
+  useEventListener("scroll", onScroll);
+  useEventListener("touchstart", () => {
+    setTouching(true);
+  });
+  useEventListener("touchend", () => {
+    setTouching(false);
+  });
 
   return (
     <Container
@@ -87,8 +75,9 @@ const Header = () => {
       component="header"
       style={{
         ...({
-          "--top": `${top.value}${top.unit}`,
+          "--top": `${top}px`,
           "--opacity": opacity,
+          height: `${height}px`,
         } as React.CSSProperties),
       }}
     >
