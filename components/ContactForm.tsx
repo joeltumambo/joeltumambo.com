@@ -2,8 +2,10 @@ import { useState } from "react";
 import TextField from "./TextField";
 import Button from "./Button";
 import Grid from "./Grid";
+import { useEventListener, useWindowSize } from "usehooks-ts";
 
 export const ContactForm = () => {
+  const { width, height } = useWindowSize();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [values, setValues] = useState({
@@ -33,7 +35,7 @@ export const ContactForm = () => {
   };
 
   const isValid = Object.values(values).every((value) => value);
-  const isDisabled = !isValid || loading || success; 
+  const isDisabled = !isValid || loading || success;
   let mailToLink = `mailto:${process.env.NEXT_PUBLIC_EMAIL ?? ""}`;
 
   if (values.message) {

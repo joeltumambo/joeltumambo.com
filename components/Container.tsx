@@ -1,8 +1,10 @@
+import classNames from "classnames";
 import React from "react";
 import styles from "../styles/Container.module.css";
 
 interface ContainerProps {
   id?: string;
+  className?: string;
   containerRef?: React.RefObject<Element>;
   component?: "section" | "div" | "footer" | "header";
   background?: string;
@@ -12,6 +14,7 @@ interface ContainerProps {
 
 const Container: React.FC<ContainerProps> = ({
   id,
+  className,
   containerRef,
   component = "section",
   background,
@@ -24,7 +27,7 @@ const Container: React.FC<ContainerProps> = ({
     {
       id: id,
       ref: containerRef,
-      className: styles.container,
+      className: classNames(styles.container, className),
       style: {
         background: background,
         minHeight: minHeight,

@@ -1,11 +1,9 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 import Container from "../components/Container";
 import { useIntersectionObserver } from "usehooks-ts";
 import Page from "../components/Page";
-import evenify from "../utils/evenify";
-import { INITIAL_VIEWPORT_META } from "../utils/contants";
 
 const Hero = dynamic(() => import("../page-components/HeroSection"));
 const Beauty = dynamic(() => import("../page-components/BeautySection"));
@@ -15,14 +13,14 @@ interface LazySectionProps {
   id: string;
   component: ReactElement;
   background: string;
-  onVisible?(): void;
+  height?: string;
 }
 
 const LazySection: React.FC<LazySectionProps> = ({
   id,
   component,
   background,
-  onVisible,
+  height = "90vh",
 }) => {
   const ref = React.useRef(null);
   const entry = useIntersectionObserver(ref, {
@@ -31,15 +29,11 @@ const LazySection: React.FC<LazySectionProps> = ({
   });
   const isVisible = !!entry?.isIntersecting;
 
-  if (onVisible && isVisible) {
-    onVisible();
-  }
-
   return (
     <Container
       containerRef={ref}
       id={id}
-      minHeight="90vh"
+      minHeight={height}
       background={background}
     >
       {isVisible ? component : "loading"}
@@ -48,20 +42,8 @@ const LazySection: React.FC<LazySectionProps> = ({
 };
 
 const Home: NextPage = () => {
-  const [viewport, setViewport] = useState(INITIAL_VIEWPORT_META);
-
-  const onContactVisible = () => {
-    if (document.documentElement.clientWidth < 600) {
-      const height = document.documentElement.clientHeight;
-      const evenHeight = evenify(height);
-      const content = `height=${evenHeight}, ${INITIAL_VIEWPORT_META}`;
-
-      setViewport(content);
-    }
-  };
-
   return (
-    <Page title="Build Beautiful" viewport={viewport}>
+    <Page title="Build Beautiful">
       <Container
         minHeight="80vh"
         background="var(--brown-50)"
@@ -80,7 +62,6 @@ const Home: NextPage = () => {
         id="contact"
         component={<Contact />}
         background="var(--indigo-50)"
-        onVisible={onContactVisible}
       />
     </Page>
   );
