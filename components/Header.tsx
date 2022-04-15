@@ -93,7 +93,7 @@ const Header = () => {
             size="small"
             filled
             link={{
-              href: "#contact",
+              href: "/#contact",
             }}
           >
             Say hello!
