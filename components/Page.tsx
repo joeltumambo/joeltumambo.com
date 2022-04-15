@@ -9,6 +9,7 @@ import {
   useWindowSize,
 } from "usehooks-ts";
 import { TITLE, DESCRIPTION, INITIAL_VIEWPORT_META } from "../utils/contants";
+import evenify from "../utils/evenify";
 import Footer from "./Footer";
 import Header from "./Header";
 
@@ -22,13 +23,17 @@ const Page: React.FC<PageProps> = ({
   description = DESCRIPTION,
   children,
 }) => {
-  const { width, height } = useWindowSize();
+  const windowSize = useWindowSize();
   const [viewport, setViewport] = useState(INITIAL_VIEWPORT_META);
   const title = titleProp ? [titleProp, TITLE].join(" | ") : TITLE;
 
   useEventListener("load", () => {
-    if (width < 600) {
-      setViewport(`height=${height}, width=${width}, initial-scale=1.0`);
+    if (windowSize.width < 600) {
+      const height = evenify(windowSize.height);
+      const width = windowSize.width;
+      const newViewport = `height=${height}, width=${width}, initial-scale=1.0`;
+
+      setViewport(newViewport);
     }
   });
 
