@@ -1,5 +1,7 @@
-import { useState } from "react";
+import classNames from "classnames";
+import React, { useState } from "react";
 import { useEventListener } from "usehooks-ts";
+import styles from "../styles/Header.module.css";
 import evenify from "../utils/evenify";
 import Button from "./Button";
 import Container from "./Container";
@@ -21,11 +23,11 @@ const Header = () => {
     value: 0,
     unit: "px",
   });
-  const [animate, setAnimate] = useState(false);
+  const [animated, setAnimated] = useState(false);
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
- 
+
   const onScrollStop = () => {
-    setAnimate(true);
+    setAnimated(true);
     if (top.value * -1 >= heightMap[top.unit] / 2) {
       setTop({
         value: heightMap[top.unit] * -1,
@@ -38,7 +40,7 @@ const Header = () => {
       });
     }
   };
-  
+
   const onScroll = () => {
     const element = document.documentElement;
     const scrollTop = element.scrollTop;
@@ -59,11 +61,12 @@ const Header = () => {
       unit: unit,
     });
     setOpacity(Math.min(1 - (height - scrollTop) / height, 1));
-    setAnimate(false);
-    if (timer) {
-      clearTimeout(timer);
-    }
+    setAnimated(false);
+
     if (lastScrollTop > height) {
+      if (timer) {
+        clearTimeout(timer);
+      }
       setTimer(setTimeout(onScrollStop, 100));
     }
   };
@@ -72,21 +75,13 @@ const Header = () => {
 
   return (
     <Container
+      className={classNames(styles.header, animated && styles.animated)}
       component="header"
-      minHeight="52px"
-      background={`rgba(250, 250, 250, ${opacity - 0.1})`}
       style={{
-        overflow: "hidden",
-        zIndex: 100,
-        height: "10vh",
-        position: "sticky",
-        top: `${top.value}${top.unit}`,
-        boxShadow: `0 1px 0 0 rgba(0, 0, 0, ${opacity / 10})`,
-        backdropFilter: "blur(4px)",
-        WebkitBackdropFilter: "blur(4px)",
-        ...(animate && {
-          transition: "top 250ms var(--easing-standard)",
-        }),
+        ...({
+          "--top": `${top.value}${top.unit}`,
+          "--opacity": opacity,
+        } as React.CSSProperties),
       }}
     >
       <div
