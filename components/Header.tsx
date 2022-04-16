@@ -10,7 +10,7 @@ import Icon from "./Icon";
 const Header = () => {
   const { height: windowHeight } = useWindowSize();
   const [height, setHeight] = useState(52);
-  const [scrolling, setScrolling] = useState(false);
+  const [focused, setFocused] = useState(false);
   const [touching, setTouching] = useState(false);
   const [opacity, setOpacity] = useState(0);
   const [lastScrollTop, setLastScrollTop] = useState(0);
@@ -54,7 +54,7 @@ const Header = () => {
     const relativeHeight = evenify(Math.round(windowHeight * 0.1));
     const newHeight = Math.max(relativeHeight, 52);
     setHeight(newHeight);
-  }, [windowHeight]);
+  }, []);
 
   useEffect(() => {
     if (!touching) {
@@ -69,6 +69,12 @@ const Header = () => {
   useEventListener("touchend", () => {
     setTouching(false);
   });
+  useEventListener("focusin", () => {
+    setFocused(true);
+  });
+  useEventListener("focusout", () => {
+    setFocused(false);
+  });
 
   return (
     <Container
@@ -76,7 +82,7 @@ const Header = () => {
       component="header"
       style={{
         ...({
-          "--top": `${top}px`,
+          "--top": `${focused ? maxTop : top}px`,
           "--opacity": opacity,
           height: `${height}px`,
         } as React.CSSProperties),
