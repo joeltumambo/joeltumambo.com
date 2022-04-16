@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 import Container from "../components/Container";
-import { useEventListener, useIntersectionObserver } from "usehooks-ts";
+import { useIntersectionObserver } from "usehooks-ts";
 import Page from "../components/Page";
 import evenify from "../utils/evenify";
 import { INITIAL_VIEWPORT_META } from "../utils/contants";

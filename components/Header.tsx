@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
-import { useEventListener, useWindowSize } from "usehooks-ts";
+import { useEventListener } from "usehooks-ts";
 import styles from "../styles/Header.module.css";
 import evenify from "../utils/evenify";
 import Button from "./Button";
@@ -8,7 +8,6 @@ import Container from "./Container";
 import Icon from "./Icon";
 
 const Header = () => {
-  const { height: windowHeight } = useWindowSize();
   const [height, setHeight] = useState(52);
   const [focused, setFocused] = useState(false);
   const [touching, setTouching] = useState(false);

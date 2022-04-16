@@ -2,7 +2,6 @@ import { useState } from "react";
 import TextField from "./TextField";
 import Button from "./Button";
 import Grid from "./Grid";
-import evenify from "../utils/evenify";
 
 export const ContactForm = () => {
   const [loading, setLoading] = useState(false);
