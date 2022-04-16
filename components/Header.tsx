@@ -71,7 +71,12 @@ const Header = () => {
     setTouching(false);
   });
   useEventListener("focusin", () => {
-    setFocused(true);
+    if (
+      document.activeElement!.tagName === "INPUT" ||
+      document.activeElement!.tagName === "TEXTAREA"
+    ) {
+      setFocused(true);
+    }
   });
   useEventListener("focusout", () => {
     setFocused(false);
