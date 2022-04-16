@@ -51,7 +51,8 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const relativeHeight = evenify(Math.round(windowHeight * 0.1));
+    const element = document.documentElement;
+    const relativeHeight = evenify(Math.round(element.clientHeight * 0.1));
     const newHeight = Math.max(relativeHeight, 52);
     setHeight(newHeight);
   }, []);
