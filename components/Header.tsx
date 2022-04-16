@@ -10,6 +10,7 @@ import Icon from "./Icon";
 const Header = () => {
   const { height: windowHeight } = useWindowSize();
   const [height, setHeight] = useState(52);
+  const [scrolling, setScrolling] = useState(false);
   const [touching, setTouching] = useState(false);
   const [opacity, setOpacity] = useState(0);
   const [lastScrollTop, setLastScrollTop] = useState(0);

@@ -2,10 +2,9 @@ import { useState } from "react";
 import TextField from "./TextField";
 import Button from "./Button";
 import Grid from "./Grid";
-import { useEventListener, useWindowSize } from "usehooks-ts";
+import evenify from "../utils/evenify";
 
 export const ContactForm = () => {
-  const { width, height } = useWindowSize();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [values, setValues] = useState({
