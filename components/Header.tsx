@@ -8,7 +8,7 @@ import Container from "./Container";
 import Icon from "./Icon";
 
 const Header = () => {
-  const [height, setHeight] = useState(52);
+  const [height, setHeight] = useState(0);
   const [focused, setFocused] = useState(false);
   const [touching, setTouching] = useState(false);
   const [opacity, setOpacity] = useState(0);
@@ -62,7 +62,11 @@ const Header = () => {
     }
   }, [touching]);
 
-  useEventListener("scroll", onScroll);
+  useEventListener("scroll", () => {
+    if (!focused) {
+      onScroll();
+    }
+  });
   useEventListener("touchstart", () => {
     setTouching(true);
   });
@@ -70,10 +74,11 @@ const Header = () => {
     setTouching(false);
   });
   useEventListener("focusin", () => {
-    if (
+    const isInput =
       document.activeElement!.tagName === "INPUT" ||
-      document.activeElement!.tagName === "TEXTAREA"
-    ) {
+      document.activeElement!.tagName === "TEXTAREA";
+
+    if (isInput) {
       setFocused(true);
     }
   });
@@ -89,7 +94,7 @@ const Header = () => {
         ...({
           "--top": `${focused ? maxTop : top}px`,
           "--opacity": opacity,
-          height: `${height}px`,
+          height: height ? `${height}px` : "10vh",
         } as React.CSSProperties),
       }}
     >
