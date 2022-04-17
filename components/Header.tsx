@@ -62,7 +62,11 @@ const Header = () => {
     }
   }, [touching]);
 
-  useEventListener("scroll", onScroll);
+  useEventListener("scroll", () => {
+    if (!focused) {
+      onScroll();
+    }
+  });
   useEventListener("touchstart", () => {
     setTouching(true);
   });
@@ -70,10 +74,11 @@ const Header = () => {
     setTouching(false);
   });
   useEventListener("focusin", () => {
-    if (
+    const isInput =
       document.activeElement!.tagName === "INPUT" ||
-      document.activeElement!.tagName === "TEXTAREA"
-    ) {
+      document.activeElement!.tagName === "TEXTAREA";
+
+    if (isInput) {
       setFocused(true);
     }
   });
