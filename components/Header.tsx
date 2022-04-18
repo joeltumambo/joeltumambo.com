@@ -60,6 +60,7 @@ const Header = () => {
     if (focused) {
       setOpacity(0);
       setTop(maxTop);
+      setLastScrollTop(0);
     }
   }, [focused]);
 
