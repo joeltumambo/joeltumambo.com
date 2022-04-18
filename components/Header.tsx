@@ -75,12 +75,15 @@ const Header = () => {
       onScroll();
     }
   });
+
   useEventListener("touchstart", () => {
     setTouching(true);
   });
+
   useEventListener("touchend", () => {
     setTouching(false);
   });
+
   useEventListener("focusin", () => {
     const isInput =
       document.activeElement!.tagName === "INPUT" ||
@@ -90,6 +93,7 @@ const Header = () => {
       setFocused(true);
     }
   });
+
   useEventListener("focusout", () => {
     setFocused(false);
   });
