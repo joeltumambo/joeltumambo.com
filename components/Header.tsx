@@ -86,8 +86,8 @@ const Header = () => {
 
   useEventListener("focusin", () => {
     const isInput =
-      document.activeElement!.tagName === "INPUT" ||
-      document.activeElement!.tagName === "TEXTAREA";
+      document.activeElement?.tagName === "INPUT" ||
+      document.activeElement?.tagName === "TEXTAREA";
 
     if (isInput) {
       setFocused(true);
