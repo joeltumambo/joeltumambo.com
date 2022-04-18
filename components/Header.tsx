@@ -57,6 +57,14 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+    if (focused) {
+      setOpacity(0);
+      setTop(maxTop);
+      setLastScrollTop(0);
+    }
+  }, [focused]);
+
+  useEffect(() => {
     if (!touching) {
       onScrollStop();
     }
@@ -92,7 +100,7 @@ const Header = () => {
       component="header"
       style={{
         ...({
-          "--top": `${focused ? maxTop : top}px`,
+          "--top": `${top}px`,
           "--opacity": opacity,
           height: height ? `${height}px` : "10vh",
         } as React.CSSProperties),
