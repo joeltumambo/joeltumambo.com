@@ -95,7 +95,7 @@ const BeautySection = () => (
         lineHeight={2}
         align={{ xs: "center", sm: "left" }}
       >
-        {`I specialize in front-end\nand design systems.`}
+        {`I specialize in beautiful\nfront-end and design systems.`}
       </Typography>
       <Typography
         component="h2"
