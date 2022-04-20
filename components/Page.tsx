@@ -3,7 +3,6 @@ import Script from "next/script";
 import { useEffect, useState } from "react";
 import { useEventListener } from "usehooks-ts";
 import { TITLE, DESCRIPTION, INITIAL_VIEWPORT_META } from "../utils/contants";
-import evenify from "../utils/evenify";
 import isInputFocus from "../utils/isInputFocus";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -17,7 +16,7 @@ const Page: React.FC<PageProps> = ({
   title: titleProp,
   description = DESCRIPTION,
   children,
-}) => {
+}) => {``
   const [initialSize, setInitialSize] = useState({
     width: 0,
     height: 0,
@@ -44,8 +43,7 @@ const Page: React.FC<PageProps> = ({
 
   useEventListener("focusin", () => {
     if (isInputFocus()) {
-      const { width } = initialSize;
-      const height = evenify(initialSize.height);
+      const { width, height } = initialSize;
       const newViewport = `height=${height}, width=${width}, initial-scale=1.0`;
 
       setViewport(newViewport);
