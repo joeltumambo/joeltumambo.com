@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useEventListener } from "usehooks-ts";
 import styles from "../styles/Header.module.css";
 import evenify from "../utils/evenify";
+import isInputFocus from "../utils/isInputFocus";
 import Button from "./Button";
 import Container from "./Container";
 import Icon from "./Icon";
@@ -49,11 +50,15 @@ const Header = () => {
     }
   };
 
-  useEffect(() => {
+  const getHeight = () => {
     const element = document.documentElement;
     const relativeHeight = evenify(Math.round(element.clientHeight * 0.1));
     const newHeight = Math.max(relativeHeight, 52);
     setHeight(newHeight);
+  };
+
+  useEffect(() => {
+    getHeight();
   }, []);
 
   useEffect(() => {
@@ -70,6 +75,12 @@ const Header = () => {
     }
   }, [touching]);
 
+  useEventListener("resize", () => {
+    if (!isInputFocus()) {
+      getHeight();
+    }
+  });
+
   useEventListener("scroll", () => {
     if (!focused) {
       onScroll();
@@ -85,11 +96,7 @@ const Header = () => {
   });
 
   useEventListener("focusin", () => {
-    const isInput =
-      document.activeElement?.tagName === "INPUT" ||
-      document.activeElement?.tagName === "TEXTAREA";
-
-    if (isInput) {
+    if (isInputFocus()) {
       setFocused(true);
     }
   });

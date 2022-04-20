@@ -1,8 +1,13 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import type { NextPage } from "next";
+import Head from "next/head";
 import dynamic from "next/dynamic";
 import Container from "../components/Container";
-import { useIntersectionObserver } from "usehooks-ts";
+import {
+  useEventListener,
+  useIntersectionObserver,
+  useWindowSize,
+} from "usehooks-ts";
 import Page from "../components/Page";
 import evenify from "../utils/evenify";
 import { INITIAL_VIEWPORT_META } from "../utils/contants";
@@ -43,41 +48,28 @@ const LazySection: React.FC<LazySectionProps> = ({
   );
 };
 
-const Home: NextPage = () => {
-  const [viewport, setViewport] = useState(INITIAL_VIEWPORT_META);
-
-  useEffect(() => {
-    const element = document.documentElement;
-    const height = evenify(element.clientHeight);
-    const width = element.clientWidth;
-    const newViewport = `height=${height}, width=${width}, initial-scale=1.0`;
-
-    setViewport(newViewport);
-  }, []);
-
-  return (
-    <Page title="Build Beautiful" viewport={viewport}>
-      <Container
-        minHeight="80vh"
-        background="var(--brown-50)"
-        style={{
-          paddingBottom: "10vh",
-        }}
-      >
-        <Hero />
-      </Container>
-      <LazySection
-        id="learn"
-        component={<Beauty />}
-        background="var(--grey-50)"
-      />
-      <LazySection
-        id="contact"
-        component={<Contact />}
-        background="var(--indigo-50)"
-      />
-    </Page>
-  );
-};
+const Home: NextPage = () => (
+  <Page title="Build Beautiful">
+    <Container
+      minHeight="80vh"
+      background="var(--brown-50)"
+      style={{
+        paddingBottom: "10vh",
+      }}
+    >
+      <Hero />
+    </Container>
+    <LazySection
+      id="learn"
+      component={<Beauty />}
+      background="var(--grey-50)"
+    />
+    <LazySection
+      id="contact"
+      component={<Contact />}
+      background="var(--indigo-50)"
+    />
+  </Page>
+);
 
 export default Home;
