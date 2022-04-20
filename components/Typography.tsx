@@ -76,7 +76,7 @@ const Typography: React.FC<TypographyProps> = ({
   gutter = 1,
   color = "inherit",
   whiteSpace = "normal",
-  align = "left",
+  align = "inherit",
   children,
 }) => {
   let xsSize;
