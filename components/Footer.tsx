@@ -38,10 +38,12 @@ const Footer = () => (
     <style jsx>
       {`
         a {
+          all: unset;
           color: var(--indigo-a100);
+          cursor: pointer;
         }
 
-        a:hover {
+        a:hover, a:focus {
           text-decoration: underline;
         }
       `}
